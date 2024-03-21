@@ -4,7 +4,7 @@ using System;
 /// Представляет копию придмета в инвентаре, созданную на основе ScriptableObject
 /// </summary>
 [Serializable]
-public class RealItem : IEquip
+public class RealItem : IEquip<ItemToEquip>
 {
     [NonSerialized]
     private ItemEmpty _item;
@@ -13,13 +13,16 @@ public class RealItem : IEquip
 
     [JsonIgnore]
     public ItemEmpty Item => _item;
-    public string ItemID => _item.ID;
+    [JsonIgnore]
+    private string _itemID;
+    public string ItemID => _itemID;
     public int NumberOfItems => _numberOfItem;
     public bool IsEquiped => _isEquiped;
 
     public RealItem(ItemEmpty item, int numberOfItem)
     {
         _item = item;
+        _itemID = item.ID;
 
         if (numberOfItem <= _item.MaxNumberOfItems)
         {
@@ -31,6 +34,14 @@ public class RealItem : IEquip
         }
 
         _isEquiped = false;
+    }
+
+    [JsonConstructor]
+    public RealItem(string ItemID, int NumberOfItems, bool IsEquiped)
+    {
+        _itemID = ItemID;
+        _numberOfItem = NumberOfItems;
+        _isEquiped = IsEquiped;
     }
 
     /// <summary>

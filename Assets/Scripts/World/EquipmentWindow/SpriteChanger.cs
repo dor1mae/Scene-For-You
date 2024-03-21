@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Контролирует спрайты предметов, надетых героем
 /// </summary>
-public class EquipSpriteController : InitClass, IEquip
+public class SpriteChanger : InitClass, IEquip<ItemToEquip>
 {
     [SerializeField] private Image _helmet;
     [SerializeField] private Image _armor;

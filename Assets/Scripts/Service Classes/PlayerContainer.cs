@@ -37,11 +37,31 @@ public class PlayerContainer : IContainer
         _inventory = Inventory.GetItems();
     }
 
+    [JsonConstructor]
+    public PlayerContainer(string Name, int Durability, int Endurance, int Intelligence, int Power, int Dexterity, List<RealItem> inv)
+    {
+        this.Name = Name;
+        StatDurability = Durability;
+        StatEndurace = Endurance;
+        StatIntelligence = Intelligence;
+        StatPower = Power;
+        StatDexterity = Dexterity;
+        _inventory = inv;
+
+        Inventory = GameManagerSingltone.Instance.Inventory;
+    }
+
     public IEnumerator Load()
     {
-        LoadPlayer();
-        yield return null;
+        foreach(var item in _inventory)
+        {
+            UnityEngine.Debug.Log($"{item.ItemID} : {item.IsEquiped} : {item.NumberOfItems}");
+        }
 
+        UnityEngine.Debug.Log($"LoadPlayer()");
+        LoadPlayer();
+
+        UnityEngine.Debug.Log($"LoadInventory()");
         LoadInventory();
         yield return null;
     }
@@ -57,7 +77,7 @@ public class PlayerContainer : IContainer
             {"Durability", StatDurability }
         };
 
-        GameManagerSingltone.Instance.Player.LoadSave(dict, (flag) =>
+        GameManagerSingltone.Instance.Player.LoadSave(new Tuple<Dictionary<string, int>, string>(dict, Name), (flag) =>
         {
             if(flag)
             {

@@ -7,7 +7,7 @@ using UnityEngine;
 // события у EventBus
 
 [Serializable]
-public class Player : Unit, ICanLoadSave<Dictionary<string, int>>
+public class Player : Unit, ICanLoadSave<Tuple<Dictionary<string, int>, string>>
 {
     private bool _isTurned = false;
 
@@ -19,17 +19,19 @@ public class Player : Unit, ICanLoadSave<Dictionary<string, int>>
         };
     }
 
-    public void LoadSave(Dictionary<string, int> data, Action<bool> callback = null)
+    public void LoadSave(Tuple<Dictionary<string, int>, string> tuple, Action<bool> callback = null)
     {
-        _power = new Power(data["Power"]);
+        _power.LoadSave(tuple.Item1["Power"]);
 
-        _dexterity = new Dexterity(data["Dexterity"]);
+        _dexterity.LoadSave(tuple.Item1["Dexterity"]);
 
-        _intelligence = new Intelligence(data["Intelligence"]);
+        _intelligence.LoadSave(tuple.Item1["Intelligence"]);
 
-        _durability = new Durability(data["Durability"], this);
+        _durability.LoadSave(tuple.Item1["Durability"]);
 
-        _endurance = new Endurance(data["Endurance"]);
+        _endurance.LoadSave(tuple.Item1["Endurance"]);
+
+        _name = tuple.Item2;
 
         callback?.Invoke(true);
     }

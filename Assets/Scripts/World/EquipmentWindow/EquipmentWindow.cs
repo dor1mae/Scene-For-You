@@ -10,7 +10,7 @@ public class EquipmentWindow : InitClass
     [SerializeField] private GameObject _itemPrefab;
     [SerializeField] private Button _useButton;
     [SerializeField] private InformationPanelController _controller;
-    [SerializeField] private ItemPresentController _presentController;
+    [SerializeField] private InventoryPresenter _presentController;
 
     private ItemSearchController _searchController;
 
