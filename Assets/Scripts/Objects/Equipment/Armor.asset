@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08936074da5e3604f84262cb8dcde0d8, type: 3}
+  m_Name: Armor
+  m_EditorClassIdentifier: 
+  _name: "\u041A\u043E\u0436\u0430\u043D\u0430\u044F \u0431\u0440\u043E\u043D\u044F"
+  _id: armor1
+  _description: "\u041F\u0440\u043E\u0441\u0442\u0430\u044F \u043A\u043E\u0436\u0430\u043D\u0430\u044F
+    \u0431\u0440\u043E\u043D\u044F"
+  _icon: {fileID: -2836186884739202667, guid: 99eb397ca2b8da444aa0cd5a272a0dae, type: 3}
+  _cost: 100
+  _maxNumberOfItems: 1
+  _power: 1
+  _durability: 2
+  _endurance: 1
+  _dexterity: 0
+  _intelligence: 0
