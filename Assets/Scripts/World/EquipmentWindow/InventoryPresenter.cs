@@ -4,7 +4,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Выводит предметы в поле инвентаря
 /// </summary>
-public class ItemPresentController : MonoBehaviour
+public class InventoryPresenter : MonoBehaviour
 {
     private GameObject _containerUI;
     private GameObject _itemPrefab;
@@ -38,8 +38,8 @@ public class ItemPresentController : MonoBehaviour
             itemPrefab.transform.SetParent(_containerUI.transform, false);
 
             //Создаем связь между UI и данными о предмете в инвентаре. Роль ItemPresenter - отвечать за автоматическое удаление предмета.
-            var eqPres = itemPrefab.GetComponent<EquipmentPresenter>();
-            eqPres.SetEquipmentPresenter(item.Item, _infPanelController, _useButton);
+            var eqPres = itemPrefab.GetComponent<ItemSlotButton>();
+            eqPres.SetEquipmentPresenter(item, _infPanelController, _useButton);
         }
     }
 

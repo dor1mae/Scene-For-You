@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EquipmentPresenter : MonoBehaviour
+public class ItemSlotButton : MonoBehaviour
 {
-    private ItemEmpty _item;
+    private RealItem _item;
 
     //Поля кнопки
     [SerializeField] private Text _name;
@@ -16,7 +16,7 @@ public class EquipmentPresenter : MonoBehaviour
     private ReactiveProperty<bool> _isEquiped;
     private Action<ItemEmpty> Clicked;
 
-    public void SetEquipmentPresenter(ItemEmpty item, InformationPanelController controller, Button button)
+    public void SetEquipmentPresenter(RealItem item, InformationPanelController controller, Button button)
     {
         //Информационная панель
         _controller = controller;
@@ -27,28 +27,28 @@ public class EquipmentPresenter : MonoBehaviour
 
         _item = item;
 
-        _name.text = item.Name;
-        _spriteOfObject.sprite = item.Icon;
+        _name.text = item.Item.Name;
+        _spriteOfObject.sprite = item.Item.Icon;
         //_numberOfItems.text = $"{_item.NumberOfItems}/{_item.MaxNumberOfItems}";
 
-        Debug.Log($"{GetType()}: SetEquipmentPresenter : {item.Name} is received");
+        Debug.Log($"{GetType()}: SetEquipmentPresenter : {item.Item.Name} is received");
     }
 
     public void OnClick()
     {
-        if (_item is ItemToEquip)
+        if (_item.Item is ItemToEquip)
         {
             _useButton.gameObject.SetActive(true);
-            _useButton.GetComponent<EquipController>().SetItem(_item as ItemToEquip);
+            _useButton.GetComponent<EquipButton>().SetItem(_item);
 
             //Сообщаем о необходимости обновить данные на информационной панели
-            Clicked?.Invoke(_item);
+            Clicked?.Invoke(_item.Item);
         }
         else
         {
             _useButton.gameObject.SetActive(false);
 
-            Clicked?.Invoke(_item);
+            Clicked?.Invoke(_item.Item);
         }
 
         //На момент, когда я перепишу логику использования предметов

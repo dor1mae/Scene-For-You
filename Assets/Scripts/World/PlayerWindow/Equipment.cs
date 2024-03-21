@@ -63,6 +63,10 @@ public static class Equipment
         return _weapon;
     }
 
+    /// <summary>
+    /// _power, _durability, _endurance, _dexterity, _intelligence
+    /// </summary>
+    /// <returns></returns>
     public static Tuple<int, int, int, int, int> CheckEquipmentStats()
     {
         ItemToEquip[] _temp = new ItemToEquip[] { _helmet, _armor, _shoes, _pants, _gloves, _weapon };

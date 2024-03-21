@@ -1,9 +1,10 @@
 ﻿
+using System;
 /// <summary>
 /// Класс основа для характеристик
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class Stat : IUpgrade<int>, IDowngrade<int>
+public abstract class Stat : IUpgrade<int>, IDowngrade<int>, ICanLoadSave<int>
 {
     protected int _value;
     public int Value => _value;
@@ -21,6 +22,11 @@ public abstract class Stat : IUpgrade<int>, IDowngrade<int>
     public void Downgrade(int value)
     {
         _value -= value;
+    }
+
+    public void LoadSave(int data, Action<bool> callback = null)
+    {
+        _value = data;
     }
 }
 

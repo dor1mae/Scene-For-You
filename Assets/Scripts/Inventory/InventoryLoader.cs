@@ -18,6 +18,7 @@ public class InventoryLoader : ICanLoadSave<List<RealItem>>
         foreach(RealItem item in data)
         {
             item.SetItem(GameManagerSingltone.Instance.ScriptableDatabase.GetItemForKey(item.ItemID));
+            Debug.Log($"{GetType()} : {item.ItemID}");
 
             if(item.Item is ItemToEquip)
             {
@@ -27,8 +28,11 @@ public class InventoryLoader : ICanLoadSave<List<RealItem>>
                     Equipment.onSetSprite?.Invoke(item.Item as ItemToEquip);
                 }
             }
+
+            items.Add(item);
         }
 
+        EquipmentWindow.OnSearch?.Invoke();
         callback?.Invoke(true);
     }
 }

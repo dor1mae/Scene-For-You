@@ -29,7 +29,7 @@ public class TestSave : MonoBehaviour
                 Debug.Log("Okay Load");
             });
 
-            playerContainer.Load();
+            StartCoroutine(playerContainer.Load());
 
             Debug.Log(playerContainer.GetType());
         }

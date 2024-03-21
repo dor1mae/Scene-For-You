@@ -32,10 +32,10 @@ public interface IGetStats
 /// <summary>
 /// »нтерфейс всех классов, которые выполн€ют свои или чужие функции экипировки предметов
 /// </summary>
-public interface IEquip
+public interface IEquip<T>
 {
-    public void Equip(ItemToEquip item = null);
-    public void TakeOff(ItemToEquip item = null);
+    public void Equip(T item);
+    public void TakeOff(T item);
 }
 
 
