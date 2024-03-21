@@ -33,5 +33,9 @@ public class TestSave : MonoBehaviour
 
             Debug.Log(playerContainer.GetType());
         }
+        else if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log(GameManagerSingltone.Instance.Player.AttackController.Attack());
+        }
     }
 }

@@ -1,17 +1,16 @@
-﻿
-
-using System;
-/// <summary>
+﻿/// <summary>
 /// Считает урон за счет характеристики. Может быть расширен
 /// </summary>
-public class Power : Stat
+public class Power : Stat, ICheckDamage<float>
 {
+    private float multDamage = 5;
     public Power(int value) : base(value)
     {
     }
 
-    public int CheckDamage()
+    public float CheckDamage()
     {
-        return Value * 5;
+        UnityEngine.Debug.Log($"Пытаюсь отправить физический урон");
+        return _value * multDamage;
     }
 }

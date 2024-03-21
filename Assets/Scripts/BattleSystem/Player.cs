@@ -6,17 +6,18 @@ using UnityEngine;
 // у одного должен быть класс, действующий в пошаговом режиме и взаимодействующий с атакой и прочими действиями, вызывая
 // события у EventBus
 
-[Serializable]
 public class Player : Unit, ICanLoadSave<Tuple<Dictionary<string, int>, string>>
 {
     private bool _isTurned = false;
 
+    private AttackController attackController;
+    public AttackController AttackController => attackController;
+
     public Player() : base()
     {
-        EventBus.onGetPlayer += () =>
-        {
-            return this;
-        };
+        attackController = new AttackController(Intelligence, Dexterity, Power);
+
+        EventBus.onGetPlayer += GetPlayer;
     }
 
     public void LoadSave(Tuple<Dictionary<string, int>, string> tuple, Action<bool> callback = null)
@@ -39,5 +40,10 @@ public class Player : Unit, ICanLoadSave<Tuple<Dictionary<string, int>, string>>
     public void NewTurn()
     {
         _isTurned = false;
+    }
+
+    public Player GetPlayer()
+    {
+        return this;
     }
 }

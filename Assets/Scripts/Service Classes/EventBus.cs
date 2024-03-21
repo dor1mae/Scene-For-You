@@ -42,4 +42,9 @@ public static class EventBus
     /// </summary>
     public static Action<ItemToEquip> onSpriteEquip;
 
+    /// <summary>
+    /// Событие для проверки урона
+    /// </summary>
+    public static Func<Tuple<float, float>> onCheckDamage;
+
 }

@@ -18,6 +18,8 @@ public abstract class StatWithBar : Stat, IRestore<float>, ISpend<float>, ISync<
         _mult = mult;
         _maxBar = _value * _mult;
         _bar = _maxBar;
+
+        isChanged?.Invoke(_bar, _maxBar);
     }
 
     private Action<float, float> _isChanged;
@@ -57,6 +59,7 @@ public abstract class StatWithBar : Stat, IRestore<float>, ISpend<float>, ISync<
         _bar = _maxBar;
 
         isChanged?.Invoke(_bar, _maxBar);
+        onValueChange?.Invoke(_value);
     }
 
     public new void Upgrade(int value)

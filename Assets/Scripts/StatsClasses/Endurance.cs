@@ -1,5 +1,4 @@
-﻿using System;
-/// <summary>
+﻿/// <summary>
 /// Выносливость
 /// </summary>
 public class Endurance : StatWithBar
