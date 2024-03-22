@@ -8,13 +8,15 @@ using UnityEngine;
 
 public class Player : Unit, ICanLoadSave<Tuple<Dictionary<string, int>, string>>
 {
-    private bool _isTurned = false;
+    protected bool _isTurned = false;
 
-    private AttackController attackController;
+    protected AttackController attackController;
     public AttackController AttackController => attackController;
 
-    public Player() : base()
+    public override void Init()
     {
+        base.Init();
+
         attackController = new AttackController(Intelligence, Dexterity, Power);
 
         EventBus.onGetPlayer += GetPlayer;

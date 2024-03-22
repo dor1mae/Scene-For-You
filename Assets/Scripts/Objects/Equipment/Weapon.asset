@@ -21,7 +21,7 @@ MonoBehaviour:
   _maxNumberOfItems: 0
   _power: 2
   _durability: 0
-  _endurance: 0
-  _dexterity: -1
-  _intelligence: 0
+  _endurance: 6
+  _dexterity: -5
+  _intelligence: -5
   _damage: 0
