@@ -1,6 +1,4 @@
-﻿using System;
-
-/// <summary>
+﻿/// <summary>
 /// Отвечает за стат ловкости. Тут криты и прочее
 /// </summary>
 public class Dexterity : Stat
@@ -13,14 +11,14 @@ public class Dexterity : Stat
         _multDamage = multDamage;
     }
 
-    public float Attack(int damage)
+    public float CheckCrit()
     {
         if (UnityEngine.Random.Range(0, 100) <= Value)
         {
-            return damage * MultDamage;
+            return MultDamage;
         }
         else
-        { return damage; }
+        { return 1; }
     }
 }
 

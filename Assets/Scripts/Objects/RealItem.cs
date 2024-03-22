@@ -52,6 +52,15 @@ public class RealItem : IEquip<ItemToEquip>
         if (_item is ItemToEquip && _isEquiped == false)
         {
             (_item as ItemToEquip).Equip();
+
+            var player = GameManagerSingltone.Instance.Player;
+
+            player.Power.Upgrade((_item as ItemToEquip).Power);
+            player.Dexterity.Upgrade((_item as ItemToEquip).Dexterity);
+            player.Endurance.Upgrade((_item as ItemToEquip).Endurance);
+            player.Intelligence.Upgrade((_item as ItemToEquip).Intelligence);
+            player.Durability.Upgrade((_item as ItemToEquip).Durability);
+
             _isEquiped = true;
         }
     }
@@ -64,6 +73,15 @@ public class RealItem : IEquip<ItemToEquip>
         if (_item is ItemToEquip && _isEquiped == true)
         {
             (_item as ItemToEquip).TakeOff();
+
+            var player = GameManagerSingltone.Instance.Player;
+
+            player.Power.Downgrade((_item as ItemToEquip).Power);
+            player.Dexterity.Downgrade((_item as ItemToEquip).Dexterity);
+            player.Endurance.Downgrade((_item as ItemToEquip).Endurance);
+            player.Intelligence.Downgrade((_item as ItemToEquip).Intelligence);
+            player.Durability.Downgrade((_item as ItemToEquip).Durability);
+
             _isEquiped = false;
         }
     }

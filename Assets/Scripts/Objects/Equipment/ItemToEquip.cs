@@ -11,6 +11,12 @@ public abstract class ItemToEquip : ItemEmpty, IItemToEquip
     [SerializeField] protected int _dexterity;
     [SerializeField] protected int _intelligence;
 
+    public int Power => _power;
+    public int Durability => _durability;
+    public int Endurance => _endurance;
+    public int Intelligence => _intelligence;
+    public int Dexterity => _dexterity;
+
     public abstract void Equip();
 
     ///<summary>

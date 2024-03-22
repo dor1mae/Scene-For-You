@@ -1,6 +1,4 @@
-﻿
-using System;
-/// <summary>
+﻿/// <summary>
 /// Здоровье, она же Крепость
 /// </summary>
 public class Durability : StatWithBar
