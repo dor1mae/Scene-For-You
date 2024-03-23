@@ -47,4 +47,9 @@ public static class EventBus
     /// </summary>
     public static Func<Tuple<float, float>> onCheckDamage;
 
+    /// <summary>
+    /// Для межсценарной передачи экрану загрузки данных о том, какую сцену нужно загружать
+    /// </summary>
+    public static Func<Tuple<int, int>> onTransferSceneKey;
+
 }
