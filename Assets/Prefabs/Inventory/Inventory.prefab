@@ -706,7 +706,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5888352970100570447}
         m_TargetAssemblyTypeName: SearchCatToggle, Assembly-CSharp
         m_MethodName: OnToggleValueChanged
         m_Mode: 2
@@ -825,6 +825,7 @@ GameObject:
   - component: {fileID: 7369478938155296175}
   - component: {fileID: 5162645152595115657}
   - component: {fileID: 4277932908129265574}
+  - component: {fileID: 1221002931790947857}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -912,6 +913,19 @@ MonoBehaviour:
   _itemPrefab: {fileID: 930376725383234749, guid: 3d49ebf9acb9b2e4ea17c55144c6c9e9, type: 3}
   _useButton: {fileID: 1027946042181333214}
   _controller: {fileID: 2338413526461385096}
+  _presentController: {fileID: 1221002931790947857}
+--- !u!114 &1221002931790947857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356344105192271039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9391dec83f09b264996004132c0c5b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1360189705701151118
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,7 +1441,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3640965291346304453}
         m_TargetAssemblyTypeName: SearchCatToggle, Assembly-CSharp
         m_MethodName: OnToggleValueChanged
         m_Mode: 2
@@ -1933,7 +1947,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1001136635039024660}
         m_TargetAssemblyTypeName: SearchCatToggle, Assembly-CSharp
         m_MethodName: OnToggleValueChanged
         m_Mode: 2
@@ -2597,7 +2611,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1999608504315410655}
         m_TargetAssemblyTypeName: SearchCatToggle, Assembly-CSharp
         m_MethodName: OnToggleValueChanged
         m_Mode: 2
@@ -2708,7 +2722,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8319341642040647045}
         m_TargetAssemblyTypeName: SearchCatToggle, Assembly-CSharp
         m_MethodName: OnToggleValueChanged
         m_Mode: 2
@@ -4247,7 +4261,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7043079876487422161}
         m_TargetAssemblyTypeName: SearchCatToggle, Assembly-CSharp
         m_MethodName: OnToggleValueChanged
         m_Mode: 2
@@ -5330,12 +5344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bdf94389c6d8cd4890ec4008a7cbae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _helmet: {fileID: 5584608350759228282}
-  _armor: {fileID: 2775658400023392151}
-  _pants: {fileID: 4757828907231185046}
-  _shoes: {fileID: 8423809950099500147}
-  _gloves: {fileID: 1830256540535382512}
-  _weapon: {fileID: 806710087629143185}
+  _equipSpriteController: {fileID: 119205632825053075}
 --- !u!1 &7248348935798709064
 GameObject:
   m_ObjectHideFlags: 0
@@ -5727,7 +5736,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4588737602613053434}
         m_TargetAssemblyTypeName: SearchCatToggle, Assembly-CSharp
         m_MethodName: OnToggleValueChanged
         m_Mode: 2
@@ -6028,6 +6037,7 @@ GameObject:
   - component: {fileID: 3840414613444109360}
   - component: {fileID: 633995263458410828}
   - component: {fileID: 3007405717787934002}
+  - component: {fileID: 119205632825053075}
   m_Layer: 5
   m_Name: CharacterPanel
   m_TagString: Untagged
@@ -6094,6 +6104,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 50
+--- !u!114 &119205632825053075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7910478934934390984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc92094f7b7f75e47ae746316e26aa23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _helmet: {fileID: 4124867052597067312}
+  _armor: {fileID: 2188890191375511005}
+  _pants: {fileID: 3771264990254266112}
+  _shoes: {fileID: 2479993221370938963}
+  _gloves: {fileID: 7099876055004493696}
+  _weapon: {fileID: 1640606866807825657}
 --- !u!1 &7978894771299841907
 GameObject:
   m_ObjectHideFlags: 0
@@ -6104,6 +6132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1019816830318030878}
   - component: {fileID: 4055434751084598271}
+  - component: {fileID: 2977172471437827331}
   m_Layer: 5
   m_Name: Values
   m_TagString: Untagged
@@ -6166,6 +6195,28 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &2977172471437827331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978894771299841907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48f70c7f6b6d584c85b60f1e45c5539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _durability: {fileID: 8562985863300044463}
+  _dexterity: {fileID: 7866827788127531927}
+  _intelligence: {fileID: 6019485279164211877}
+  _power: {fileID: 251050071083979749}
+  _endurance: {fileID: 4456301925895979355}
+  _mana: {fileID: 9058915410849741460}
+  _health: {fileID: 1294223898081012287}
+  _stamina: {fileID: 5466815115759513824}
+  _magicDamage: {fileID: 1595850259010901475}
+  _physDamage: {fileID: 9063259539435038871}
 --- !u!1 &8017055092897960624
 GameObject:
   m_ObjectHideFlags: 0
