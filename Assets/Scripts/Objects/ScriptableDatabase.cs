@@ -3,21 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ScriptableDatabase", menuName = "Items/ScriptableDatabase")]
-public class ScriptableDatabase : ScriptableObject, IInit
+public class ScriptableDatabase : AbstractScriptableDatabase<ItemEmpty>, IInit
 {
-    [SerializeField] private ItemEmpty[] items;
-    
-    private List<ItemEmpty> itemDatabase = new List<ItemEmpty>();
 
-    public void Init()
-    {
-        foreach(var item in items)
-        {
-            itemDatabase.Add(item);
-        }
-    }
-
-    public ItemEmpty GetItemForKey(string key)
+    public override ItemEmpty GetItemForKey(string key)
     {
         if(itemDatabase.Count == 0)
         {

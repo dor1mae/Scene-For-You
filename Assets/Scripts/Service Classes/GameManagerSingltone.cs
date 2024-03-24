@@ -6,6 +6,8 @@ public class GameManagerSingltone : MonoBehaviour
 {
     [SerializeField] private ScriptableDatabase dataBase;
     public ScriptableDatabase ScriptableDatabase => dataBase;
+    [SerializeField] private SaveScriptableDatabase dataSave;
+    public SaveScriptableDatabase SaveScriptableDatabase => dataSave;
 
     private Player _player;
     public Player Player

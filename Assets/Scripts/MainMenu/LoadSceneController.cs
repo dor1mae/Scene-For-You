@@ -35,8 +35,8 @@ public class LoadSceneController : InitClass, IWorkWithScene
 
         while (!asyncOperation.isDone)
         {
-            _progressBar.fillAmount = asyncOperation.progress;
-            _text.text = $"{asyncOperation.progress}%";
+            _progressBar.fillAmount = asyncOperation.progress * 100;
+            _text.text = $"{asyncOperation.progress * 100}%";
             yield return null;
         }
 

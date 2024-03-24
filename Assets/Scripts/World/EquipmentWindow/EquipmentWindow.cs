@@ -38,12 +38,14 @@ public class EquipmentWindow : InitClass
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I) && !_animator.GetBool("isOpen"))
+        if(Input.GetKeyDown(KeyCode.I) && !_animator.GetBool("isOpen") && UIManager.IsBusy())
         {
+            UIManager.SetBusy(true);
             StartCoroutine(OnOpenEquipmentWindow());
         }
-        else if(Input.GetKeyDown(KeyCode.I) && _animator.GetBool("isOpen"))
+        else if(Input.GetKeyDown(KeyCode.I) && _animator.GetBool("isOpen") && !UIManager.IsBusy())
         {
+            UIManager.SetBusy(true);
             StartCoroutine(OnCloseEquipmentWindow());
         }
     }
