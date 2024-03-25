@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SaveButton: AbstractButton
 {
-    [SerializeField] private Animator _saveAnimator;
-
+    [SerializeField] private SaveLoadWindow _window;
     public override void OnClick()
     {
-        _saveAnimator.SetBool("isOpen", true);
+        _window.SetStateOfWindow(false);
+        _window.StartOpenAnimation();
     }
 }

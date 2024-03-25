@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 /// <summary>
 /// Класс для хранения ссылок на сохранения игрока
 /// </summary>
@@ -30,10 +31,12 @@ public class SaveScriptableDatabase: AbstractScriptableDatabase<SaveScriptableOb
     {
         if (GetItemForKey(saveName) != null)
         {
-            var save = CreateInstance<SaveScriptableObject>();
-
-            itemDatabase.Remove(save);
-            Destroy(save);
+            ScriptableObject.Destroy(GetItemForKey(saveName));
         }
+    }
+
+    public List<SaveScriptableObject> GetItems()
+    {
+        return itemDatabase;
     }
 }

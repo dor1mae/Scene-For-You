@@ -30,7 +30,7 @@ public class SaveScriptableObject : ScriptableObject
         });
     }
 
-    public void Load()
+    public void Load(Action<bool> callback = null)
     {
         JsonFileToStorageSaveManager json = new JsonFileToStorageSaveManager();
         var save = json.Load<Save>(_saveName, (a) =>
@@ -42,6 +42,7 @@ public class SaveScriptableObject : ScriptableObject
         });
 
         save.Load();
+        callback?.Invoke(true);
     }
 }
 
