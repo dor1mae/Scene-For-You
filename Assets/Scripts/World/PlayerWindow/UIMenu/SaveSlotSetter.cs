@@ -1,6 +1,7 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using System.IO;
 
 public class SaveSlotSetter : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class SaveSlotSetter : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _saveDate;
     [SerializeField] private Button _deleteButton;
 
-    public void SetSlot(SaveScriptableObject item)
+    public void SetSlot(Save item)
     {
         _saveName.text = item.SaveName;
         _savePlayer.text = item.PlayerName;
@@ -18,7 +19,8 @@ public class SaveSlotSetter : MonoBehaviour
         _deleteButton.onClick.RemoveAllListeners();
         _deleteButton.onClick.AddListener(()=>
         {
-            GameManagerSingltone.Instance.SaveScriptableDatabase.Delete(item.SaveName);
+            Directory.Delete(Path.Combine(Application.persistentDataPath, $"{item.SaveName}.json"));
+            Destroy(gameObject);
         });
     }
 }

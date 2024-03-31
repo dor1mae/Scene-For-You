@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
+using static UnityEditor.Progress;
 
 public class LoadSlotsPresenter : AbstractObjectPresenter
 {
@@ -15,30 +17,39 @@ public class LoadSlotsPresenter : AbstractObjectPresenter
     public override void PresentObjects()
     {
         CleanObjects();
+        JsonFileToStorageSaveManager json = new();
 
-        var database = GameManagerSingltone.Instance.SaveScriptableDatabase;
+        var database = Directory.GetFiles(Application.persistentDataPath);
 
-        foreach (var item in database.GetItems())
+        foreach (var file in database)
         {
+            var save = json.Load<Save>(file, (a) =>
+            {
+                if (a)
+                {
+                    Debug.Log("Загрузка сохранения прошла успешно");
+                }
+            });
+
             var slot = MonoBehaviour.Instantiate(_prefabObject);
 
             slot.transform.SetParent(_content, false);
-            slot.GetComponent<Button>().onClick.AddListener(()=> //Через лямбда выражение присваиваю логику смены функции у кнопки загрузки
+            slot.GetComponent<Button>().onClick.AddListener(() => //Через лямбда выражение присваиваю логику смены функции у кнопки загрузки
             {
                 var button = _loadButton.GetComponent<Button>();
                 button.onClick.RemoveAllListeners();
                 button.onClick.AddListener(() => //Сама логика, которая помещается в кнопку загрузки при нажатии на слоты сохранений
                 {
-                    item.Load((a) =>
+                    save.Load((a) =>
                     {
-                        if(a)
+                        if (a)
                         {
-                            Debug.Log($"{item.name} успешно загружен");
+                            Debug.Log($"{save.SaveName} успешно загружен");
                         }
                     });
                 });
             });
-            slot.GetComponent<SaveSlotSetter>().SetSlot(item);
+            slot.GetComponent<SaveSlotSetter>().SetSlot(save);
         }
     }
 }

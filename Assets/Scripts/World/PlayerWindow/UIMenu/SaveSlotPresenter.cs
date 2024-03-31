@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
 
 public class SaveSlotsPresenter : AbstractObjectPresenter
 {
@@ -20,14 +21,23 @@ public class SaveSlotsPresenter : AbstractObjectPresenter
     public override void PresentObjects()
     {
         CleanObjects();
+        JsonFileToStorageSaveManager json = new();
 
         var saveButton = MonoBehaviour.Instantiate(_toSaveButton);
         saveButton.transform.SetParent(_content, false);
 
-        var database = GameManagerSingltone.Instance.SaveScriptableDatabase;
+        var database = Directory.GetFiles(Application.persistentDataPath);
 
-        foreach (var item in database.GetItems())
+        foreach (var file in database)
         {
+            var save = json.Load<Save>(file, (a) =>
+            {
+                if (a)
+                {
+                    Debug.Log("Загрузка сохранения прошла успешно");
+                }
+            });
+
             var slot = MonoBehaviour.Instantiate(_prefabObject);
 
             slot.transform.SetParent(_content, false);
@@ -37,15 +47,15 @@ public class SaveSlotsPresenter : AbstractObjectPresenter
                 button.onClick.RemoveAllListeners();
                 button.onClick.AddListener(() => //Сама логика, которая помещается в кнопку загрузки при нажатии на слоты сохранений
                 {
-                    var saveName = item.SaveName;
+                    var saveName = save.SaveName;
 
-                    database.Delete(saveName);
-                    database.Save(saveName);
+                    Directory.Delete(Path.Combine(Application.persistentDataPath, file));
+                    json.Save(file, new Save(saveName));
 
-                    slot.GetComponent<SaveSlotSetter>().SetSlot(item);
+                    slot.GetComponent<SaveSlotSetter>().SetSlot(save);
                 });
             });
-            slot.GetComponent<SaveSlotSetter>().SetSlot(item);
+            slot.GetComponent<SaveSlotSetter>().SetSlot(save);
         }
     }
 }

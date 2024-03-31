@@ -42,6 +42,9 @@ public class SaveLoadWindow : AbstractUIWindow
 
         gameObject.GetComponent<CanvasGroup>().alpha = 0.0f;
 
+        Destroy(_presenter);
+
+        _isActive = false;
         onEndAnimation?.Invoke();
     }
 
@@ -57,6 +60,23 @@ public class SaveLoadWindow : AbstractUIWindow
         Debug.Log("Попытка вызвать открытие и включение объекта");
         yield return new WaitForSeconds(1);
 
+        _isActive = false;
         onEndAnimation?.Invoke();
+    }
+
+    public override void StartCloseAnimation()
+    {
+        if(!_isActive)
+        {
+            base.StartCloseAnimation();
+        }
+    }
+
+    public override void StartOpenAnimation()
+    {
+        if (!_isActive)
+        {
+            base.StartOpenAnimation();
+        }
     }
 }

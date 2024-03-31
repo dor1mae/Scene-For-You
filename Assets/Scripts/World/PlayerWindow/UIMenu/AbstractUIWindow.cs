@@ -12,13 +12,13 @@ public abstract class AbstractUIWindow: InitClass
 
     protected abstract IEnumerator OnOpenAnimation();
 
-    public void StartOpenAnimation()
+    public virtual void StartOpenAnimation()
     {
         _isActive = true;
         StartCoroutine(OnOpenAnimation());
     }
 
-    public void StartCloseAnimation()
+    public virtual void StartCloseAnimation()
     {
         _isActive = true;
         StartCoroutine(OnCloseAnimation());

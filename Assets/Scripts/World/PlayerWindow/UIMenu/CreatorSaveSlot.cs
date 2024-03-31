@@ -10,7 +10,9 @@ public class CreatorSaveSlot : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            GameManagerSingltone.Instance.SaveScriptableDatabase.Save(_inputfield.text);
+            var json = new JsonFileToStorageSaveManager();
+
+            json.Save(_inputfield.text, new Save(_inputfield.text));
             onCreatedSave?.Invoke();
         }
     }

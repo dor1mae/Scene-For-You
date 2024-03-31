@@ -21,7 +21,7 @@ public class SaveScriptableObject : ScriptableObject
         _playerName = GameManagerSingltone.Instance.Player.Name;
 
         JsonFileToStorageSaveManager json = new JsonFileToStorageSaveManager();
-        json.Save<Save>(_saveName, new Save(), (a) =>
+        json.Save<Save>(_saveName, new Save(_saveName), (a) =>
         {
             if (a)
             {
