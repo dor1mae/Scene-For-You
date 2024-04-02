@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 
 public interface IContainer
 {
-    IEnumerator Load();
+    void Load();
 }
 

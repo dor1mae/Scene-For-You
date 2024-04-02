@@ -20,6 +20,9 @@ public class EquipmentWindow : InitClass
 
     //Событие, которое вызывается либо переключением Toggle категорий, либо Submit поисковой строки. Запускает поиск предметов
     public static Action OnSearch;
+    private Action onEndAnimation;
+
+    private bool _isActive = false;
 
     private Animator _animator;
 
@@ -30,6 +33,11 @@ public class EquipmentWindow : InitClass
         _searchController = new ItemSearchController(_inventory);
         _presentController.SetItemPresentController(_containerUI, _itemPrefab, _searchController, _controller, _useButton);
         _animator = GetComponent<Animator>();
+        
+        onEndAnimation = () =>
+        {
+            _isActive = false;
+        };
 
         OnSearch += _presentController.PresentItems;
         _presentController.PresentItems();
@@ -38,18 +46,21 @@ public class EquipmentWindow : InitClass
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I) && !_animator.GetBool("isOpen"))
+        if(Input.GetKeyDown(KeyCode.I) && !_animator.GetBool("isOpen") && !UIManager.IsBusy() && !_isActive)
         {
-            StartCoroutine(OnOpenEquipmentWindow());
+            StartOpenAnimation();
         }
-        else if(Input.GetKeyDown(KeyCode.I) && _animator.GetBool("isOpen"))
+        else if((Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape))&& _animator.GetBool("isOpen") && UIManager.IsBusy() && !_isActive)
         {
-            StartCoroutine(OnCloseEquipmentWindow());
+            StartCloseAnimation();
         }
     }
 
     private IEnumerator OnOpenEquipmentWindow()
     {
+        UIManager.SetBusy(true);
+        UIManager.SetCanPlayerMove(false);
+
         gameObject.GetComponent<CanvasGroup>().alpha = 1.0f;
 
         _animator.SetBool("isOpen", true);
@@ -58,10 +69,15 @@ public class EquipmentWindow : InitClass
 
         Debug.Log("Попытка вызвать открытие и включение объекта");
         yield return new WaitForSeconds(1);
+
+        onEndAnimation?.Invoke();
     }
 
     private IEnumerator OnCloseEquipmentWindow()
     {
+        UIManager.SetBusy(false);
+        UIManager.SetCanPlayerMove(true);
+
         _animator.SetBool("isOpen", false);
         
         _animator.Play("Close");
@@ -71,6 +87,20 @@ public class EquipmentWindow : InitClass
         Debug.Log("Попытка вызвать закрытие и отключение объекта");
          
         gameObject.GetComponent<CanvasGroup>().alpha = 0.0f;
+
+        onEndAnimation?.Invoke();
+    }
+
+    private void StartOpenAnimation()
+    {
+        _isActive = true;
+        StartCoroutine(OnOpenEquipmentWindow());
+    }
+
+    private void StartCloseAnimation()
+    {
+        _isActive = true;
+        StartCoroutine(OnCloseEquipmentWindow());
     }
 }
 

@@ -51,7 +51,7 @@ public class PlayerContainer : IContainer
         Inventory = GameManagerSingltone.Instance.Inventory;
     }
 
-    public IEnumerator Load()
+    public void Load()
     {
         foreach(var item in _inventory)
         {
@@ -63,7 +63,6 @@ public class PlayerContainer : IContainer
 
         UnityEngine.Debug.Log($"LoadInventory()");
         LoadInventory();
-        yield return null;
     }
 
     private void LoadPlayer()

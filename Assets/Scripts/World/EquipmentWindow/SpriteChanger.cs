@@ -30,11 +30,21 @@ public class SpriteChanger : InitClass, IEquip<ItemToEquip>
         };
 
         Equipment.onSetSprite += Equip;
+        Equipment.onTakeOff += TakeOffAll;
     }
 
     public void TakeOff(ItemToEquip item)
     {
         dict[item._equipmentType].sprite = null;
+    }
+
+    private void TakeOffAll()
+    {
+        Debug.Log("Снимаю все");
+        foreach (var item in dict.Values)
+        {
+            item.sprite = null;
+        }
     }
 
     public void Equip(ItemToEquip item)

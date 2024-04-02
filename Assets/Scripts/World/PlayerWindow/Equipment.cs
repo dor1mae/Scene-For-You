@@ -15,6 +15,8 @@ public static class Equipment
     /// </summary>
     public static Action<ItemToEquip> onSetSprite;
 
+    public static Action onTakeOff;
+
     private static Helmet _helmet;
     private static Armor _armor;
     private static Pants _pants;
