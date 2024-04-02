@@ -17,8 +17,11 @@ public class MovementController : InitClass
     // Update is called once per frame
     void Update()
     {
-        _position.x = Input.GetAxisRaw("Horizontal");
-        _position.y = Input.GetAxisRaw("Vertical");
+        if(UIManager.CanPlayerMove)
+        {
+            _position.x = Input.GetAxisRaw("Horizontal");
+            _position.y = Input.GetAxisRaw("Vertical");
+        }
     }
 
     private void FixedUpdate()

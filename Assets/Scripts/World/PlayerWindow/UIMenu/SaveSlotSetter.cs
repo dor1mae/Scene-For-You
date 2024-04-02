@@ -2,7 +2,11 @@
 using UnityEngine;
 using TMPro;
 using System.IO;
+using System.Linq;
 
+/// <summary>
+/// Установщик слота сохранения. Устанавливает функцию удаления, обновляет информацию на слоте о сохранении
+/// </summary>
 public class SaveSlotSetter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _saveName;
@@ -19,8 +23,17 @@ public class SaveSlotSetter : MonoBehaviour
         _deleteButton.onClick.RemoveAllListeners();
         _deleteButton.onClick.AddListener(()=>
         {
-            Directory.Delete(Path.Combine(Application.persistentDataPath, $"{item.SaveName}.json"));
-            Destroy(gameObject);
+            var files = Directory.GetFiles(Path.Combine(Application.persistentDataPath)).ToList();
+            
+            var save = files.Find(x => x.Contains(_saveName.text));
+            Debug.Log(save);
+            if (save != null) 
+            {
+                File.Delete(save);
+                Destroy(gameObject);
+
+                Debug.Log($"Удаление {save} прошло успешно");
+            }
         });
     }
 }

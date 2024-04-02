@@ -50,7 +50,7 @@ public class EquipmentWindow : InitClass
         {
             StartOpenAnimation();
         }
-        else if(Input.GetKeyDown(KeyCode.I) && _animator.GetBool("isOpen") && UIManager.IsBusy() && !_isActive)
+        else if((Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape))&& _animator.GetBool("isOpen") && UIManager.IsBusy() && !_isActive)
         {
             StartCloseAnimation();
         }
@@ -59,6 +59,7 @@ public class EquipmentWindow : InitClass
     private IEnumerator OnOpenEquipmentWindow()
     {
         UIManager.SetBusy(true);
+        UIManager.SetCanPlayerMove(false);
 
         gameObject.GetComponent<CanvasGroup>().alpha = 1.0f;
 
@@ -75,6 +76,7 @@ public class EquipmentWindow : InitClass
     private IEnumerator OnCloseEquipmentWindow()
     {
         UIManager.SetBusy(false);
+        UIManager.SetCanPlayerMove(true);
 
         _animator.SetBool("isOpen", false);
         

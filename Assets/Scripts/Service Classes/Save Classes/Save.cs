@@ -16,8 +16,8 @@ public class Save
     public string SaveName => _saveName;
     public string SaveDate => _saveDate;
     public string PlayerName => _playerName;
-
-    private PlayerContainer _playerContainer;
+    [JsonProperty("playerContainer")]
+    public PlayerContainer _playerContainer;
 
     [JsonIgnore]
     private List<IContainer> _containerList;
@@ -46,6 +46,8 @@ public class Save
     private void FillList()
     {
         _containerList.Add(_playerContainer as IContainer);
+
+        Debug.Log($"{_playerContainer.Name} передан успешно");
     }
 
     public void Load(Action<bool> callback = null)

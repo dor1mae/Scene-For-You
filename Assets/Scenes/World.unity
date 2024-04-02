@@ -886,6 +886,7 @@ GameObject:
   - component: {fileID: 282133589}
   - component: {fileID: 282133588}
   - component: {fileID: 282133587}
+  - component: {fileID: 282133590}
   m_Layer: 5
   m_Name: LoadGame Button
   m_TagString: Untagged
@@ -956,7 +957,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 282133588}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 282133590}
+        m_TargetAssemblyTypeName: LoadButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &282133588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,6 +1008,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282133585}
   m_CullTransparentMesh: 1
+--- !u!114 &282133590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282133585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f36031c5b1925047a294d5daf87a7a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveLoadWindow: {fileID: 2000147216}
 --- !u!1 &287044299
 GameObject:
   m_ObjectHideFlags: 0
@@ -4878,7 +4904,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataBase: {fileID: 11400000, guid: 7d89a0c6048d9c0458069f9ea5513f34, type: 2}
-  dataSave: {fileID: 11400000, guid: 72b088292fbdf324597d586f2489dffc, type: 2}
 --- !u!4 &2119436113
 Transform:
   m_ObjectHideFlags: 0

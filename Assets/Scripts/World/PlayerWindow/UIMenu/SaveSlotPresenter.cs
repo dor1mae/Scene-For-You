@@ -15,7 +15,6 @@ public class SaveSlotsPresenter : AbstractObjectPresenter
         _loadButton.GetComponentInChildren<TextMeshProUGUI>().text = "Перезаписать";
 
         _toSaveButton = ButtonToSave;
-        _toSaveButton.GetComponent<CreatorSaveSlot>().onCreatedSave += PresentObjects;
     }
 
     public override void PresentObjects()
@@ -24,6 +23,7 @@ public class SaveSlotsPresenter : AbstractObjectPresenter
         JsonFileToStorageSaveManager json = new();
 
         var saveButton = MonoBehaviour.Instantiate(_toSaveButton);
+        saveButton.GetComponent<CreatorSaveSlot>().onCreatedSave += PresentObjects;
         saveButton.transform.SetParent(_content, false);
 
         var database = Directory.GetFiles(Application.persistentDataPath);
@@ -34,7 +34,7 @@ public class SaveSlotsPresenter : AbstractObjectPresenter
             {
                 if (a)
                 {
-                    Debug.Log("Загрузка сохранения прошла успешно");
+                    Debug.Log($"Загрузка сохранения {file} прошла успешно"); ;
                 }
             });
 

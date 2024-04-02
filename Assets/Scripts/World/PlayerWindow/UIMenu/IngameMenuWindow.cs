@@ -20,6 +20,7 @@ public class IngameMenuWindow : AbstractUIWindow
     protected override IEnumerator OnCloseAnimation()
     {
         UIManager.SetBusy(false);
+        UIManager.SetCanPlayerMove(true);
 
         _animator.SetBool("IsOpen", false);
 
@@ -37,6 +38,7 @@ public class IngameMenuWindow : AbstractUIWindow
     protected override IEnumerator OnOpenAnimation()
     {
         UIManager.SetBusy(true);
+        UIManager.SetCanPlayerMove(false);
 
         gameObject.GetComponent<CanvasGroup>().alpha = 1.0f;
 
