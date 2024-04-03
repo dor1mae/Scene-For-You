@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
-using static UnityEditor.Progress;
 
 public class LoadSlotsPresenter : AbstractObjectPresenter
 {
