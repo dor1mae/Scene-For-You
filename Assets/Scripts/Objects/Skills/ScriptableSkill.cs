@@ -26,6 +26,10 @@ public abstract class ScriptableSkill : ScriptableObject, IUse
     [SerializeField]
     protected SkillType[] skillTypes;
 
+    [SerializeField] 
+    protected int _powerSkill;
+
+
     public string skillID => _skillID;
     public string SkillName => _skillName;
     public string Description => _skillDescription;
@@ -33,6 +37,8 @@ public abstract class ScriptableSkill : ScriptableObject, IUse
     public float CostSkill => _costSkill;
     public Sprite Sprite => _skillSprite;
     public SkillType[] SkillType => skillTypes;
+
+    public int PowerSkill => _powerSkill;
 
     public abstract void Use(Unit target);
 

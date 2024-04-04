@@ -9,7 +9,8 @@ public abstract class ScriptableSkillEffect : ScriptableSkill, IEffect
 
     public int DurationEffect => _durationEffect;
 
-    public abstract bool Effect(Unit unit = null);
+    public abstract bool Effect(Unit unit);
+    public abstract void EndEffect(Unit unit);
 
     public override Skill Learn(Unit unit)
     {

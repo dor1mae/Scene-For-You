@@ -4,17 +4,16 @@ public class AttributeDictionary : IDictionary<AttributeType, Stat>
 {
     private Dictionary<AttributeType, Stat> _attributes;
 
-    public AttributeDictionary()
+    public AttributeDictionary(Unit unit)
     {
-        var player = GameManagerSingltone.Instance.Player;
 
         _attributes = new Dictionary<AttributeType, Stat>
         {
-            {AttributeType.ENDURANCE,  player.Endurance},
-            {AttributeType.INTELLIGENCE, player.Intelligence },
-            {AttributeType.POWER, player.Power},
-            {AttributeType.DEXTERITY, player.Dexterity },
-            {AttributeType.DURABILITY, player.Durability},
+            {AttributeType.ENDURANCE,  unit.Endurance},
+            {AttributeType.INTELLIGENCE, unit.Intelligence },
+            {AttributeType.POWER, unit.Power},
+            {AttributeType.DEXTERITY, unit.Dexterity },
+            {AttributeType.DURABILITY, unit.Durability},
         };
 
     }

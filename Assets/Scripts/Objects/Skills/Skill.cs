@@ -12,6 +12,9 @@ public class Skill : IUse
     public string SkillID => _skillConfig.skillID;
     public List<SkillType> SkillTypes => _skillConfig.SkillType.ToList();
 
+    protected bool _isFail = false;
+    public bool IsFail => _isFail;
+
     public Skill(ScriptableSkill skillConfig, Unit owner)
     {
         _skillConfig = skillConfig;
@@ -20,7 +23,14 @@ public class Skill : IUse
 
     public virtual void Use(Unit t = null)
     {
-        if(SkillTypes.Contains(SkillType.Positive))
+        TryCast();
+
+        if(IsFail)
+        {
+            return;
+        }
+
+        if (SkillTypes.Contains(SkillType.Positive))
         {
             _skillConfig.Use(_owner);
         }
@@ -35,6 +45,15 @@ public class Skill : IUse
                 _skillConfig.Use(GameManagerSingltone.Instance.Player);
             }
         }
+    }
+
+    protected void TryCast()
+    {
+        if (Owner.Intelligence.Value - _skillConfig.CostSkill < 0)
+        {
+            _isFail = true;
+        }
+        else _isFail = false;
     }
 }
 

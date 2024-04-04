@@ -24,6 +24,7 @@ public class EffectsController : InitClass
 
             if(answer)
             {
+                effect.EndEffect();
                 _effectsList.Remove(effect);
             }
         }
