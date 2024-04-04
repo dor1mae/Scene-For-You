@@ -11,9 +11,4 @@ public abstract class ScriptableSkillEffect : ScriptableSkill, IEffect
 
     public abstract bool Effect(Unit unit);
     public abstract void EndEffect(Unit unit);
-
-    public override Skill Learn(Unit unit)
-    {
-        return new SkillWithEffect(this, unit);
-    }
 }

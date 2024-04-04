@@ -34,6 +34,10 @@ public abstract class ScriptableSkill : ScriptableObject, IUse
     public string SkillName => _skillName;
     public string Description => _skillDescription;
     public AttributeType AttributeType => _attributeType;
+
+    [SerializeField]
+    protected SkillClassEnum _skillClassEnum;
+    public SkillClassEnum SkillClass => _skillClassEnum;
     public float CostSkill => _costSkill;
     public Sprite Sprite => _skillSprite;
     public SkillType[] SkillType => skillTypes;
@@ -42,8 +46,12 @@ public abstract class ScriptableSkill : ScriptableObject, IUse
 
     public abstract void Use(Unit target);
 
-    public virtual Skill Learn(Unit unit)
+    public Skill Learn(Unit unit)
     {
-        return new Skill(this, unit);
+        SkillDictionary dict = new();
+        Type type = this.GetType();
+        Debug.Log($"{type}-скилл изучен");
+
+        return dict._dict[type].Invoke(this, unit);
     }
 }

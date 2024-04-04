@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709355eab7c52974ca349b5429fe14bd, type: 3}
   m_Name: DamageSkill
   m_EditorClassIdentifier: 
-  _skillID: 
-  _skillName: 
+  _skillID: damageskill_1
+  _skillName: "\u041C\u0430\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u043F\u043B\u0435\u0432\u043E\u043A"
   _skillSprite: {fileID: 0}
-  _skillDescription: 
-  _costSkill: 0
+  _skillDescription: "\u041F\u043B\u0435\u0432\u043E\u043A, \u043D\u043E \u043C\u0430\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0439"
+  _costSkill: 10
   _attributeType: 0
-  skillTypes: 
-  _powerSkill: 0
+  skillTypes: 01000000
+  _powerSkill: 2
+  _skillClassEnum: 0

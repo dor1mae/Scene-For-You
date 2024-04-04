@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c933487b8ca33074a9a9ad634a6a6404, type: 3}
   m_Name: BuffSkill
   m_EditorClassIdentifier: 
-  _skillID: 
-  _skillName: 
+  _skillID: dexterity_buff_1
+  _skillName: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 \u041B\u043E\u0432\u043A\u043E\u0441\u0442\u0438"
   _skillSprite: {fileID: 0}
-  _skillDescription: 
-  _costSkill: 0
+  _skillDescription: "\u0423\u043B\u0443\u0447\u0448\u0430\u0435\u0442 \u043B\u043E\u0432\u043A\u043E\u0441\u0442\u044C
+    \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435  5 \u0445\u043E\u0434\u043E\u0432
+    \u043D\u0430 5 \u043F\u0443\u043D\u043A\u0442\u043E\u0432"
+  _costSkill: 20
   _attributeType: 0
-  skillTypes: 
-  _powerSkill: 0
-  _durationEffect: 0
+  skillTypes: 00000000
+  _powerSkill: 5
+  _skillClassEnum: 1
+  _durationEffect: 5

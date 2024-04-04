@@ -11,6 +11,7 @@ public class Skill : IUse
     public Unit Owner => _owner;
     public string SkillID => _skillConfig.skillID;
     public List<SkillType> SkillTypes => _skillConfig.SkillType.ToList();
+    public string SkillName => _skillConfig.SkillName;
 
     protected bool _isFail = false;
     public bool IsFail => _isFail;
