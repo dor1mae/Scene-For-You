@@ -5,12 +5,12 @@ using UnityEngine;
 
 public abstract class AbstractInventory<T1, T2> : InitClass
 {
-    [SerializeField] private T1[] _startItems;
-    private List<T2> _items = new();
+    [SerializeField] protected T1[] _startItems;
+    protected List<T2> _items = new();
 
     public override void Init()
     {
-        if(_items.Capacity == 0)
+        if(_items.Count == 0)
         {
             foreach (var item in _startItems)
             {
@@ -28,6 +28,8 @@ public abstract class AbstractInventory<T1, T2> : InitClass
 
     public List<T2> GetItems()
     {
+        Debug.Log($"{_items.Count}");
+
         return _items;
     }
 }

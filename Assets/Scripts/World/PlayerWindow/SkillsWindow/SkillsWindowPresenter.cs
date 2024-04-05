@@ -1,22 +1,30 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class SkillsWindowPresenter : AbstractObjectPresenter
+public class SkillsWindowPresenter : AbstractObjectPresenter, IMonoSet
 {
-    public ReactiveProperty<List<SkillType>> _skillsCat;
-    public ReactiveProperty<string> _searchField;
+    public ReactiveProperty<List<SkillType>> _skillsCat = new();
+    public ReactiveProperty<string> _searchField = new();
 
     private SkillsSearchController _searchController;
 
-    public SkillsWindowPresenter(GameObject prefabObject, Transform content) : base(prefabObject, content)
+    [SerializeField] private SkillDescriptionSetter _skillDescriptionSetter;
+    [SerializeField] private Button _skillUse;
+
+    public void Set()
     {
+        _skillsCat.Value = new List<SkillType>();
+
         _skillsCat.OnChange += OnSkillsCatChange;
         _searchField.OnChange += OnSearchFieldChange;
+
+        _searchController = new(this, GameManagerSingltone.Instance.Player.GetComponentInChildren<SkillBook>());
     }
 
     private void OnSkillsCatChange(List<SkillType> obj)
     {
+        Debug.Log("Тоггл меняет значение");
         PresentObjects();
     }
 
@@ -34,8 +42,29 @@ public class SkillsWindowPresenter : AbstractObjectPresenter
 
         foreach (var item in items)
         {
-            //Debug.Log(item.Item.Name);
+            Debug.Log(item.SkillName);
 
+            var prefab = Instantiate(_prefabObject);
+            prefab.transform.SetParent(_content, false);
+
+            var skillSetter = prefab.GetComponent<SkillBoxSetter>();
+            skillSetter.SetInfo(item);
+
+            var button = prefab.GetComponent<Button>();
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(() =>
+            {
+                _skillDescriptionSetter.SetInfo(item);
+            });
+
+            if(GameManagerSingltone.Instance.IsBattle)
+            {
+                _skillUse.onClick.RemoveAllListeners();
+                _skillUse.onClick.AddListener(() =>
+                {
+                    item.Use();
+                });
+            }
         }
     }
 }

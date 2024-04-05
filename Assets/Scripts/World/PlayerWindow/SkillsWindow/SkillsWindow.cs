@@ -7,6 +7,7 @@ public class SkillsWindow : AbstractUIWindow
 
     public override void Init()
     {
+        _skillsPresenter.Set();
         _skillsPresenter.PresentObjects();
     }
 

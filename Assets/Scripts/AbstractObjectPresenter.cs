@@ -4,13 +4,7 @@ using UnityEngine;
 public abstract class AbstractObjectPresenter : MonoBehaviour
 {
     [SerializeField] protected GameObject _prefabObject;
-    protected Transform _content;
-
-    public AbstractObjectPresenter(GameObject prefabObject, Transform content)
-    {
-        _prefabObject = prefabObject;
-        _content = content;
-    }
+    [SerializeField] protected Transform _content;
 
     public abstract void PresentObjects();
 

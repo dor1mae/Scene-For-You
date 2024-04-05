@@ -8,17 +8,12 @@ public class GameManagerSingltone : MonoBehaviour
     public ScriptableDatabase ScriptableDatabase => dataBase;
 
     private Player _player;
-    public Player Player
-    { 
-        get
-        {
-            SetPlayer();
-            return _player;
-        }
-    }
 
     private Inventory _inventory;
     public Inventory Inventory => _inventory;
+
+    private bool _isBattle = false;
+    public bool IsBattle => _isBattle;
 
     public static GameManagerSingltone Instance { get; private set; }
 
@@ -41,9 +36,22 @@ public class GameManagerSingltone : MonoBehaviour
         _player = EventBus.onGetPlayer();
     }
 
+    public Player Player
+    {
+        get
+        {
+            SetPlayer();
+            return _player;
+        }
+    }
+
     public void SetInventory(Inventory inventory)
     {
         _inventory = inventory;
     }
 
+    public void ChangeIsBattle(bool state)
+    {
+        _isBattle = state;
+    }
 }

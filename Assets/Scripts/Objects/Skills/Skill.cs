@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class Skill : IUse
 {
@@ -15,6 +16,11 @@ public class Skill : IUse
 
     protected bool _isFail = false;
     public bool IsFail => _isFail;
+
+    public float CostSkill => _skillConfig.CostSkill;
+    public AttributeType AttributeType => _skillConfig.AttributeType;
+    public string Description => _skillConfig.Description;
+    public Sprite SkillSprite => _skillConfig.Sprite;
 
     public Skill(ScriptableSkill skillConfig, Unit owner)
     {
