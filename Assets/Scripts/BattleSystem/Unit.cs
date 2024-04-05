@@ -28,6 +28,8 @@ public abstract class Unit : InitClass
 
     public Action Turned;
 
+    public bool _isBuffed = false;
+
     public override void Init()
     {
         _power = new Power(StatPower);

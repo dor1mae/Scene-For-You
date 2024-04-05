@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//�����, �������������� ������ � ��������� � ������� �������������� � ����
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private List<ItemEmpty> _startItems;
@@ -13,9 +12,6 @@ public class Inventory : MonoBehaviour
 
     private InventoryLoader _inventoryLoader;
 
-    /// <summary>
-    /// ���������, ������������� �� �������� ������ ��������� � ����� Inventory
-    /// </summary>
     public InventoryLoader InventoryLoader => _inventoryLoader; 
 
     public void Init()

@@ -9,8 +9,10 @@ public class SaveSlotsPresenter : AbstractObjectPresenter
     protected GameObject _loadButton;
     protected GameObject _toSaveButton;
 
-    public SaveSlotsPresenter(GameObject LoadButton, GameObject prefabObject, GameObject ButtonToSave, Transform content) : base(prefabObject, content)
+    public SaveSlotsPresenter(GameObject LoadButton, GameObject prefabObject, GameObject ButtonToSave, Transform content)
     {
+        _prefabObject = prefabObject;
+        _content = content;
         _loadButton = LoadButton;
         _loadButton.GetComponentInChildren<TextMeshProUGUI>().text = "Перезаписать";
 

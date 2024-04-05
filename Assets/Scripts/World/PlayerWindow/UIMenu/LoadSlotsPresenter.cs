@@ -2,14 +2,15 @@
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
-using static UnityEditor.Progress;
 
 public class LoadSlotsPresenter : AbstractObjectPresenter
 {
     protected GameObject _loadButton;
 
-    public LoadSlotsPresenter(GameObject LoadButton, GameObject prefabObject, Transform content) : base(prefabObject, content)
+    public LoadSlotsPresenter(GameObject LoadButton, GameObject prefabObject, Transform content)
     {
+        _prefabObject = prefabObject;
+        _content = content;
         _loadButton = LoadButton;
         _loadButton.GetComponentInChildren<TextMeshProUGUI>().text = "Загрузить";
     }
