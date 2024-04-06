@@ -108,6 +108,15 @@ public class RealItem : IEquip<ItemToEquip>
     {
         _item = item;
     }
+
+    public bool TryUse()
+    {
+        if (_numberOfItem - 1 >= 0)
+        {
+            return true;
+        }
+        else return false;
+    }
 }
 
 

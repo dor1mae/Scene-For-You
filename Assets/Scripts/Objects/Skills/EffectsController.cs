@@ -3,16 +3,12 @@ using UnityEngine;
 
 public class EffectsController : InitClass
 {
-    private Unit _target;
-
     [SerializeField] private GameObject _effectsBar;
 
     private List<IEffect> _effectsList;
 
     public override void Init()
     {
-        _target = GetComponent<Unit>();
-
         EventBus.TurnEnded += OnEndTurn;
     }
 

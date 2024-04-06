@@ -9,9 +9,7 @@
 
     public override void Use(Unit t = null)
     {
-        TryCast();
-
-        if(IsFail)
+        if(TryCast())
         {
             return;
         }
@@ -39,7 +37,7 @@
 
     public bool Effect(Unit unit = null)
     {
-        if(_duration > 0 && !IsFail)
+        if(_duration > 0 && !TryCast())
         {
             (_skillConfig as ScriptableSkillEffect).Effect(Owner);
             _duration--;

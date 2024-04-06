@@ -10,6 +10,9 @@ public abstract class Unit : InitClass
     protected Endurance _endurance;
     protected Durability _durability;
 
+    public AttackController AttackController => attackController;
+    protected AttackController attackController;
+
     public Power Power => _power;
     public Dexterity Dexterity => _dexterity;
     public Intelligence Intelligence => _intelligence;
@@ -38,6 +41,7 @@ public abstract class Unit : InitClass
         _endurance = new Endurance(StatEndurace, 25);
         _durability = new Durability(StatDurability, this, 25);
 
+        attackController = new AttackController(Intelligence, Dexterity, Power);
 
         Debug.Log($"{GetType()}: is initialized");
     }

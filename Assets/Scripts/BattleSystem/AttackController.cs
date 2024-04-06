@@ -47,6 +47,11 @@ public class AttackController : IAttack<float>
         return _dexterity.CheckCrit() * _intelligence.CheckDamage();
     }
 
+    public void ChangeAttackType(AttackType attackType)
+    {
+        _attackType = attackType;
+    }
+
     public Tuple<float, float> Sync()
     {
         UnityEngine.Debug.Log($"Пытаюсь отправить данные");

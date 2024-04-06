@@ -10,14 +10,9 @@ public class Player : Unit, ICanLoadSave<Tuple<Dictionary<string, int>, string>>
 {
     protected bool _isTurned = false;
 
-    protected AttackController attackController;
-    public AttackController AttackController => attackController;
-
     public override void Init()
     {
         base.Init();
-
-        attackController = new AttackController(Intelligence, Dexterity, Power);
 
         EventBus.onGetPlayer += GetPlayer;
     }

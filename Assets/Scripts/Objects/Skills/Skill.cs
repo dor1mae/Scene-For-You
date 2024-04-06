@@ -14,9 +14,6 @@ public class Skill : IUse
     public List<SkillType> SkillTypes => _skillConfig.SkillType.ToList();
     public string SkillName => _skillConfig.SkillName;
 
-    protected bool _isFail = false;
-    public bool IsFail => _isFail;
-
     public float CostSkill => _skillConfig.CostSkill;
     public AttributeType AttributeType => _skillConfig.AttributeType;
     public string Description => _skillConfig.Description;
@@ -30,9 +27,7 @@ public class Skill : IUse
 
     public virtual void Use(Unit t = null)
     {
-        TryCast();
-
-        if(IsFail)
+        if(TryCast())
         {
             return;
         }
@@ -54,13 +49,13 @@ public class Skill : IUse
         }
     }
 
-    protected void TryCast()
+    public bool TryCast()
     {
         if (Owner.Intelligence.Value - _skillConfig.CostSkill < 0)
         {
-            _isFail = true;
+            return false;
         }
-        else _isFail = false;
+        else return true;
     }
 }
 
