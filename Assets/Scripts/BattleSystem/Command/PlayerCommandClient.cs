@@ -32,9 +32,11 @@ public class PlayerCommandClient : CommandClient
 
     protected override void CreateFabric()
     {
-        if(_commandFabric == null)
-        {
-            _commandFabric = new CommandFabric(BattleSystem.OnGetEnemy.Invoke(), BattleSystem.OnGetPlayer.Invoke());
-        }
+        //if(_commandFabric == null)
+        //{
+        //    _commandFabric = new CommandFabric(BattleSystem.OnGetEnemy.Invoke(), BattleSystem.OnGetPlayer.Invoke());
+        //}
+        _commandFabric = new CommandFabric(BattleSystem.OnGetEnemy.Invoke(), BattleSystem.OnGetPlayer.Invoke());
+
     }
 }

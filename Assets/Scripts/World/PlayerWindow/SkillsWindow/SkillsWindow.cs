@@ -13,11 +13,11 @@ public class SkillsWindow : AbstractUIWindow
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M) && !UIManager.IsBusy() && !_animator.GetBool("IsOpen") && !_isActive)
+        if (Input.GetKeyDown(KeyCode.M))
         {
             StartOpenAnimation();
         }
-        else if (Input.GetKeyDown(KeyCode.M) && UIManager.IsBusy() && _animator.GetBool("IsOpen") && !_isActive)
+        else if (Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Escape))
         {
             StartCloseAnimation();
         }
@@ -56,5 +56,21 @@ public class SkillsWindow : AbstractUIWindow
         yield return new WaitForSeconds(1);
 
         _isActive = false;
+    }
+
+    public override void StartCloseAnimation()
+    {
+        if(UIManager.IsBusy() && _animator.GetBool("IsOpen") && !_isActive)
+        {
+            base.StartCloseAnimation();
+        }
+    }
+
+    public override void StartOpenAnimation()
+    {
+        if(!UIManager.IsBusy() && !_animator.GetBool("IsOpen") && !_isActive)
+        {
+            base.StartOpenAnimation();
+        }
     }
 }

@@ -10,7 +10,7 @@ public class SkillsWindowPresenter : AbstractObjectPresenter, IMonoSet
     private SkillsSearchController _searchController;
 
     [SerializeField] private SkillDescriptionSetter _skillDescriptionSetter;
-    [SerializeField] private Button _skillUse;
+    [SerializeField] private SkillUseButton _skillUse;
 
     public void Set()
     {
@@ -59,11 +59,7 @@ public class SkillsWindowPresenter : AbstractObjectPresenter, IMonoSet
 
             if(GameManagerSingltone.Instance.IsBattle)
             {
-                _skillUse.onClick.RemoveAllListeners();
-                _skillUse.onClick.AddListener(() =>
-                {
-                    item.Use();
-                });
+                _skillUse.SetSkill(item);
             }
         }
     }

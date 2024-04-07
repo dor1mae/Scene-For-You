@@ -6,7 +6,7 @@ public class ItemSlotButton : MonoBehaviour
 {
     private RealItem _item;
 
-    //Поля кнопки
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private Text _name;
     [SerializeField] private Image _spriteOfObject;
     [SerializeField] private Text _numberOfItems;
@@ -18,7 +18,7 @@ public class ItemSlotButton : MonoBehaviour
 
     public void SetEquipmentPresenter(RealItem item, InformationPanelController controller, Button button)
     {
-        //Информационная панель
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         _controller = controller;
         Clicked += _controller.SetInformationPanel;
 
@@ -41,7 +41,7 @@ public class ItemSlotButton : MonoBehaviour
             _useButton.gameObject.SetActive(true);
             _useButton.GetComponent<EquipButton>().SetItem(_item);
 
-            //Сообщаем о необходимости обновить данные на информационной панели
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             Clicked?.Invoke(_item.Item);
         }
         else
@@ -51,15 +51,10 @@ public class ItemSlotButton : MonoBehaviour
             Clicked?.Invoke(_item.Item);
         }
 
-        //На момент, когда я перепишу логику использования предметов
+        //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         /*else(_item is ItemToUse && !(_item as ItemToUse).IsHarmful)
         {
             _useButton.onClick.AddListener((_item as ItemToUse).Use);
         }*/
-    }
-
-    private void ChangeStatus()
-    {
-        //
     }
 }
