@@ -48,10 +48,12 @@ public abstract class ScriptableSkill : ScriptableObject, IUse
 
     public Skill Learn(Unit unit)
     {
-        SkillDictionary dict = new();
-        Type type = this.GetType();
-        Debug.Log($"{type}-скилл изучен");
+        SkillDictionary dict = new(unit, this);
 
-        return dict._dict[type].Invoke(this, unit);
+        Debug.Log($"{this.GetType()}-скилл изучен");
+
+        dict._dict.TryGetValue(this.GetType(), out Skill skill);
+
+        return skill;
     }
 }

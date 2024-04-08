@@ -8,11 +8,13 @@ public class SkillUseButton : MonoBehaviour
 
     public void SetSkill(Skill skill)
     {
+        Debug.Log($"{skill.SkillName} получен");
         _skill = skill;
     }
 
     public void UseSkill()
     {
+        Debug.Log($"{_skill.SkillName} пытаюсь использовать");
         _client.AddSkillCommand(_skill);
     }
 }

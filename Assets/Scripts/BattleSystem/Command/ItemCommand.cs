@@ -9,6 +9,8 @@
         this.initiator = initiator;
         this.target = target;
         this.item = item;
+
+        _turnType = TurnType.Item;
     }
 
     public override void Execute()

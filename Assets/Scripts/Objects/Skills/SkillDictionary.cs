@@ -2,18 +2,26 @@
 using System.Collections.Generic;
 using UnityEditor;
 
-public class SkillDictionary : IDictionary<Type, Func<ScriptableSkill, Unit, Skill>>
+public class SkillDictionary : IDictionary<Type, Skill>
 {
-    private readonly Dictionary<Type, Func<ScriptableSkill, Unit, Skill>> _skills = new Dictionary<Type, Func<ScriptableSkill, Unit, Skill>>();
+    private readonly Dictionary<Type, Skill> _skills;
+    private readonly Unit _owner;
+    private readonly ScriptableSkill _skill;
 
-    public SkillDictionary()
+    public SkillDictionary(Unit owner, ScriptableSkill skill)
     {
-        _skills.Add(typeof(DamageSkill), (obj, unit) => new Skill(obj, unit));
-        _skills.Add(typeof(BuffSkill), (obj, unit) => new SkillWithEffect(obj, unit));
+        _owner = owner;
+        _skill = skill;
+
+        _skills = new()
+        {
+            [typeof(BuffSkill)] = new SkillWithEffect(_skill, _owner),
+            [typeof(DamageSkill)] = new Skill(_skill, _owner)
+        };
 
     }
 
-    public Dictionary<Type, Func<ScriptableSkill, Unit, Skill>> _dict
+    public Dictionary<Type, Skill> _dict
     {
         get => _skills;
     }

@@ -7,6 +7,8 @@
     {
         this.target = target;
         this.initiator = initiator;
+
+        _turnType = TurnType.Attack;
     }
 
     public override void Execute()

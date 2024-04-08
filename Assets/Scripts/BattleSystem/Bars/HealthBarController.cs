@@ -1,6 +1,6 @@
 public class HealthBarController : BarController
 {
-    public override void Initialize()
+    public override void Init()
     {
         _maxFill = _unit.Durability.MaxBar;
         _fill = _unit.Durability.Bar;

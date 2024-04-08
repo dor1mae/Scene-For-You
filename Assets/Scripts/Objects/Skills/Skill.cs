@@ -27,20 +27,24 @@ public class Skill : IUse
 
     public virtual void Use(Unit t = null)
     {
-        if(TryCast())
+        Debug.Log($"{GetType()} вызывает скилл {_skillConfig.SkillName}");
+
+        if(!TryCast())
         {
             return;
         }
 
         if (SkillTypes.Contains(SkillType.Positive))
         {
+            Debug.Log($"Позитивный выбор");
             _skillConfig.Use(_owner);
         }
         else
         {
-            if(_owner is Player)
+            Debug.Log($"Негативный выбор");
+            if (_owner is Player)
             {
-                _skillConfig.Use(EventBus.onGetEnemy.Invoke());
+                _skillConfig.Use(BattleSystem.OnGetEnemy.Invoke());
             }
             else
             {
@@ -51,7 +55,7 @@ public class Skill : IUse
 
     public bool TryCast()
     {
-        if (Owner.Intelligence.Value - _skillConfig.CostSkill < 0)
+        if (Owner.Intelligence.Bar - _skillConfig.CostSkill < 0)
         {
             return false;
         }

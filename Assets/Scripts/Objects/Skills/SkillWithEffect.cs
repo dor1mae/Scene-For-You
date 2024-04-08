@@ -1,4 +1,6 @@
-﻿public class SkillWithEffect : Skill, IEffect
+﻿using UnityEngine;
+
+public class SkillWithEffect : Skill, IEffect
 {
     protected int _duration;
     public int Duration => _duration;
@@ -9,27 +11,34 @@
 
     public override void Use(Unit t = null)
     {
-        if(TryCast())
+        Debug.Log($"{GetType()} вызывает скилл {_skillConfig.SkillName}");
+
+        if (!TryCast())
         {
             return;
         }
+
+        ScriptableSkillEffect skillConfig = (ScriptableSkillEffect)_skillConfig;
 
         _duration = (_skillConfig as ScriptableSkillEffect).DurationEffect;
 
         if (SkillTypes.Contains(SkillType.Positive))
         {
-            _owner.GetComponent<EffectsController>().AddEffect(this);
+            Debug.Log($"Позитивный исход");
+            _owner.EffectsController.AddEffect(this);
+            _skillConfig.Use(_owner);
         }
         else
         {
-            if(_owner is Player)
+            Debug.Log($"Негативный исход");
+            if (_owner is Player)
             {
-                EventBus.onGetEnemy.Invoke().GetComponent<EffectsController>().AddEffect(this);
+                EventBus.onGetEnemy.Invoke().EffectsController.AddEffect(this);
                 _skillConfig.Use(Owner);
             }
             else
             {
-                GameManagerSingltone.Instance.Player.GetComponent<EffectsController>().AddEffect(this);
+                GameManagerSingltone.Instance.Player.EffectsController.AddEffect(this);
                 _skillConfig.Use(Owner);
             }
         }

@@ -4,19 +4,19 @@
 
 public class DamageSkill : ScriptableSkill
 {
-    public override void Use(Unit owner)
+    public override void Use(Unit target)
     {
-        AttributeDictionary dict = new(owner);
+        AttributeDictionary dict = new(target);
 
-        Unit target;
+        Unit owner;
 
-        if(owner is Player)
+        if(target is Player)
         {
-            target = EventBus.onGetEnemy?.Invoke();
+            owner = BattleSystem.OnGetEnemy?.Invoke();
         }
         else
         { 
-            target = EventBus.onGetPlayer?.Invoke();
+            owner = BattleSystem.OnGetPlayer?.Invoke();
         }
 
         target.Durability.Spend(dict._dict[AttributeType].Value * PowerSkill);

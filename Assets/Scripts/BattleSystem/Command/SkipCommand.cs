@@ -5,6 +5,8 @@
     public SkipCommand(Unit initiator)
     {
         this.initiator = initiator;
+
+        _turnType = TurnType.Skip;
     }
 
     public override void Execute()

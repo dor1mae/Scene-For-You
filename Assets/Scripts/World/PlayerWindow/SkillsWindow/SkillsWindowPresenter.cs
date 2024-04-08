@@ -55,12 +55,13 @@ public class SkillsWindowPresenter : AbstractObjectPresenter, IMonoSet
             button.onClick.AddListener(() =>
             {
                 _skillDescriptionSetter.SetInfo(item);
-            });
+                if (GameManagerSingltone.Instance.IsBattle)
+                {
+                    Debug.Log($"{item.SkillName}");
 
-            if(GameManagerSingltone.Instance.IsBattle)
-            {
-                _skillUse.SetSkill(item);
-            }
+                    _skillUse.SetSkill(item);
+                }
+            });
         }
     }
 }

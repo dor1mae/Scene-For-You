@@ -11,7 +11,12 @@ public abstract class Unit : InitClass
     protected Durability _durability;
 
     public AttackController AttackController => attackController;
+    
     protected AttackController attackController;
+    
+    protected EffectsController _effectController;
+
+    public EffectsController EffectsController => _effectController;
 
     public Power Power => _power;
     public Dexterity Dexterity => _dexterity;
@@ -42,6 +47,7 @@ public abstract class Unit : InitClass
         _durability = new Durability(StatDurability, this, 25);
 
         attackController = new AttackController(Intelligence, Dexterity, Power);
+        _effectController = new();
 
         Debug.Log($"{GetType()}: is initialized");
     }
