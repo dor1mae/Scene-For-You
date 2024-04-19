@@ -2,41 +2,22 @@
 
 public class PlayerCommandClient : CommandClient
 {
-    public void AddSimpleAttackCommand()
+	public override void Init()
+	{
+        _actionPointChecker = new(BattleSystem.OnGetPlayer.Invoke());
+	}
+
+    protected override bool CheckOpportunity()
     {
-        CreateFabric();
-
-        _turnManager.AddCommand(_commandFabric.AddSimpleAttackCommand());
-    }
-
-    public void AddSkillCommand(Skill _skill)
-    {
-        CreateFabric();
-
-        _turnManager.AddCommand(_commandFabric.AddSkillCommand(_skill));
-    }
-
-    public void AddSkipCommand()
-    {
-        CreateFabric();
-
-        _turnManager.AddCommand(_commandFabric.AddSkipCommand());
-    }
-
-    public void AddItemCommand(RealItem item)
-    {
-        CreateFabric();
-
-        _turnManager.AddCommand(_commandFabric.AddItemCommand(item));
-    }
+		if (_turnManager.GetActionCount <= _actionPointChecker.ActionPoints && _battleSystem._currentEnumState == BattleSystemStates.Player)
+		{
+			return true;
+		}
+        return false;
+	}
 
     protected override void CreateFabric()
     {
-        //if(_commandFabric == null)
-        //{
-        //    _commandFabric = new CommandFabric(BattleSystem.OnGetEnemy.Invoke(), BattleSystem.OnGetPlayer.Invoke());
-        //}
         _commandFabric = new CommandFabric(BattleSystem.OnGetEnemy.Invoke(), BattleSystem.OnGetPlayer.Invoke());
-
     }
 }

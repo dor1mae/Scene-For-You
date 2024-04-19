@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BattleSystemLoseState: IState
+public class BattleSystemLoseState: IState<BattleSystemStates>
 {
     private readonly BattleSystem _battleSystem;
 
@@ -9,7 +9,15 @@ public class BattleSystemLoseState: IState
         _battleSystem = battleSystem;
     }
 
-    public void Enter()
+	public BattleSystemStates GetEnum
+	{
+		get
+		{
+			return BattleSystemStates.Lose;
+		}
+	}
+
+	public void Enter()
     {
         Debug.Log("Поражение");
     }

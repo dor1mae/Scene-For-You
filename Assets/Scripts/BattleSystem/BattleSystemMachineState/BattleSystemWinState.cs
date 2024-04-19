@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 
-public class BattleSystemWinState : IState
+public class BattleSystemWinState : IState<BattleSystemStates>
 {
     private readonly BattleSystem _battleSystem;
 
-    public BattleSystemWinState(BattleSystem battleSystem)
+	public BattleSystemStates GetEnum
+	{
+		get
+		{
+			return BattleSystemStates.Win;
+		}
+	}
+
+	public BattleSystemWinState(BattleSystem battleSystem)
     {
         _battleSystem = battleSystem;
     }
 
-    public void Enter()
+	public void Enter()
     {
         Debug.Log("Победа");
     }

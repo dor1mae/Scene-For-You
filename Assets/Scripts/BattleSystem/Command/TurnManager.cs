@@ -21,6 +21,8 @@ public class TurnManager : MonoBehaviour
     public event Action OnCommandFinished;
     public event Action OnCommandCanceled;
 
+    public int GetActionCount { get =>  commandList.Count; }
+
     public void AddCommand(Command command)
     {
         commandList.Add(command);
@@ -76,8 +78,8 @@ public class TurnManager : MonoBehaviour
             yield return new WaitForSeconds(_durationForCommand);
         }
 
-        OnSequenceEnd?.Invoke();
         commandList.Clear();
-        Debug.Log($"{commandList.Count} - число команд после чистки");
+		OnSequenceEnd?.Invoke();
+		Debug.Log($"{commandList.Count} - число команд после чистки");
     }
 }

@@ -1,12 +1,20 @@
 ﻿using UnityEngine;
 
 
-public class BattleSystemActionState : IState
+public class BattleSystemActionState : IState<BattleSystemStates>
 {
     private readonly BattleSystem _battleSystem;
     private readonly TurnManager _turnManager;
 
-    public BattleSystemActionState(BattleSystem battleSystem, TurnManager turnManager)
+	public BattleSystemStates GetEnum
+	{
+		get
+		{
+			return BattleSystemStates.Action;
+		}
+	}
+
+	public BattleSystemActionState(BattleSystem battleSystem, TurnManager turnManager)
     {
         _battleSystem = battleSystem;
         _turnManager = turnManager;
