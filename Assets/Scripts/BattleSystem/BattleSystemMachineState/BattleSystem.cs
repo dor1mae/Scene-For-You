@@ -25,13 +25,18 @@ public class BattleSystem : InitClass
 
         OnGetEnemy += GetEnemy;
         OnGetPlayer += GetPlayer;
+        EventBus.Died += OnDied;
+
+        BattleSystemTransfer.Get(out Player player, out Enemy enemy);
+        _player.Replace(player);
+        _enemy.Replace(enemy);
 
         _dictStates = new Dictionary<Type, IState<BattleSystemStates>>()
         {
             [typeof(BattleSystemPlayerState)] = new BattleSystemPlayerState(this, _start, _turnManager),
             [typeof(BattleSystemEnemyState)] = new BattleSystemEnemyState(this, _turnManager),
             [typeof(BattleSystemLoseState)] = new BattleSystemLoseState(this),
-            [typeof(BattleSystemWinState)] = new BattleSystemWinState(this),
+            [typeof(BattleSystemWinState)] = new BattleSystemWinState(this, enemy),
             [typeof(BattleSystemActionState)] = new BattleSystemActionState(this, _turnManager)
         };
 
@@ -48,6 +53,18 @@ public class BattleSystem : InitClass
             _currentState = state;
             _currentEnumState = _currentState.GetEnum;
             _currentState.Enter();
+        }
+    }
+
+    private void OnDied(Unit unit)
+    {
+        if(unit is Player)
+        {
+            EnterIn<BattleSystemLoseState>();
+        }
+        else
+        {
+            EnterIn<BattleSystemWinState>();
         }
     }
 

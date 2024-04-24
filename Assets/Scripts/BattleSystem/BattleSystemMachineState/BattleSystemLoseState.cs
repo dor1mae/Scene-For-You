@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleSystemLoseState: IState<BattleSystemStates>
 {
@@ -20,7 +21,9 @@ public class BattleSystemLoseState: IState<BattleSystemStates>
 	public void Enter()
     {
         Debug.Log("Поражение");
-    }
+
+		SceneManager.UnloadSceneAsync(1);
+	}
 
     public void Exit()
     {

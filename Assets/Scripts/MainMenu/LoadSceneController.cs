@@ -31,7 +31,7 @@ public class LoadSceneController : InitClass, IWorkWithScene
 
     private IEnumerator LoadSceneAsync(int sceneNumber) 
     {
-        UnityEngine.AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneNumber);
+        UnityEngine.AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneNumber, LoadSceneMode.Additive);
 
         while (!asyncOperation.isDone)
         {

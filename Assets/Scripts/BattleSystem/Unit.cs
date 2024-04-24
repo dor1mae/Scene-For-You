@@ -52,6 +52,22 @@ public abstract class Unit : InitClass
         Debug.Log($"{GetType()}: is initialized");
     }
 
+    public void Replace(Unit unit)
+    {
+        Debug.Log($"Replace {unit._name}");
+
+        _power = new Power(unit.StatPower);
+        _dexterity = new Dexterity(unit.StatDexterity, 1.5f);
+		_intelligence = new Intelligence(unit.StatIntelligence, 25);
+		_endurance = new Endurance(unit.StatEndurace, 25);
+		_durability = new Durability(unit.StatDurability, this, 25);
+
+        _name = unit.Name;
+
+		attackController = new AttackController(Intelligence, Dexterity, Power);
+		_effectController = new();
+	}
+
     public int CheckBattlePower()
     {
         return _durability.Value + _endurance.Value + _intelligence.Value + _power.Value * 5 + _dexterity.Value * 5;
