@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class BattleSystemWinState : IState<BattleSystemStates>
 {
+    private GameObject _rewardWindow;
+    private Transform _rewardTransform;
     private readonly BattleSystem _battleSystem;
     private Enemy _enemy;
 
@@ -14,21 +16,21 @@ public class BattleSystemWinState : IState<BattleSystemStates>
 		}
 	}
 
-	public BattleSystemWinState(BattleSystem battleSystem, Enemy enemy)
+	public BattleSystemWinState(BattleSystem battleSystem, Enemy enemy, GameObject rewardWindow, Transform transform)
     {
         _battleSystem = battleSystem;
         _enemy = enemy;
+        _rewardWindow = rewardWindow;
+        _rewardTransform = transform;
     }
 
 	public void Enter()
     {
         Debug.Log("Победа");
 
-        //ExpManager.GivePoints(Player);
-
-        GameManagerSingltone.Instance.ChangeStatusWorld(true);
-        _enemy.SelfDestroy();
-        SceneManager.UnloadSceneAsync(1);
+        var reward = Canvas.Instantiate(_rewardWindow);
+        reward.transform.SetParent(_rewardTransform, false);
+        reward.GetComponent<RewardWindow>().Init(BattleSystem.OnGetPlayer.Invoke(), _enemy);
     }
 
     public void Exit()

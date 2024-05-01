@@ -50,11 +50,5 @@ public class ItemSlotButton : MonoBehaviour
 
             Clicked?.Invoke(_item.Item);
         }
-
-        //�� ������, ����� � �������� ������ ������������� ���������
-        /*else(_item is ItemToUse && !(_item as ItemToUse).IsHarmful)
-        {
-            _useButton.onClick.AddListener((_item as ItemToUse).Use);
-        }*/
     }
 }

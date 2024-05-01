@@ -6,19 +6,18 @@ using UnityEngine.UI;
 /// </summary>
 public class InventoryPresenter : MonoBehaviour
 {
-    private GameObject _containerUI;
+    [SerializeField] private GameObject _containerUI;
     private GameObject _itemPrefab;
     private ItemSearchController _searchController;
     private InformationPanelController _infPanelController;
     private Button _useButton;
     private ItemUseButton _useItemButton;
 
-    public void SetItemPresentController(GameObject containerUI, GameObject itemPrefab,
+    public void SetItemPresentController(GameObject itemPrefab,
         ItemSearchController isc, InformationPanelController controller, Button button, ItemUseButton button1)
     {
         _useButton = button;
         _infPanelController = controller;
-        _containerUI = containerUI;
         _itemPrefab = itemPrefab;
         _searchController = isc;
         _useItemButton = button1;
@@ -43,10 +42,22 @@ public class InventoryPresenter : MonoBehaviour
             var eqPres = itemPrefab.GetComponent<ItemSlotButton>();
             eqPres.SetEquipmentPresenter(item, _infPanelController, _useButton);
 
-            if(GameManagerSingltone.Instance.IsBattle && item.Item is ItemToUse)
+            var eqPresButton = eqPres.GetComponent<Button>();
+			eqPresButton.onClick.RemoveAllListeners();
+			eqPresButton.onClick.AddListener(() =>
             {
-                _useItemButton.SetItem(item);
-            }
+				if (GameManagerSingltone.Instance.IsBattle && item.Item is ItemToUse)
+				{
+					_useItemButton.gameObject.SetActive(true);
+					Debug.Log($"Пытаюсь передедать предмет в кнопку активации {item.Item.Name}");
+					_useItemButton.SetItem(item);
+				}
+				else
+                {
+					_useItemButton.gameObject.SetActive(false);
+				}
+
+			});
         }
     }
 

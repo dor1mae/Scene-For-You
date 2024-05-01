@@ -11,7 +11,10 @@ public class BattleTrigger: MonoBehaviour
 		if (collision.tag == "Player" && !_inBattle)
 		{
 			_inBattle = true;
-			BattleSystemTransfer.Transfer(collision.GetComponentInParent<Player>(), GetComponentInParent<Enemy>());
+			var inventory = GameManagerSingltone.Instance.Inventory.GetItems();
+			var skillBook = GameManagerSingltone.Instance.SkillBook.GetItems();
+			
+			BattleSystemTransfer.Transfer(collision.GetComponentInParent<Player>(), GetComponentInParent<Enemy>(), inventory, skillBook);
 			_worldScene.OnClick();
 		}
 	}

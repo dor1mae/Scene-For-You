@@ -5,8 +5,8 @@ using UnityEngine;
 
 public abstract class AbstractInventory<T1, T2> : InitClass
 {
-    [SerializeField] protected T1[] _startItems;
-    protected List<T2> _items = new();
+    [SerializeField] protected List<T1> _startItems;
+    protected List<T2> _items = new List<T2>();
 
     public override void Init()
     {
@@ -24,6 +24,11 @@ public abstract class AbstractInventory<T1, T2> : InitClass
     public void Delete(T2 item)
     {
         _items.Remove(item);
+    }
+
+    public void ReplaceItems(List<T2> items)
+    {
+        this._items = items;
     }
 
     public List<T2> GetItems()

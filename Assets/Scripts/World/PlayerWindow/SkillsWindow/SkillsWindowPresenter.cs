@@ -11,6 +11,7 @@ public class SkillsWindowPresenter : AbstractObjectPresenter, IMonoSet
 
     [SerializeField] private SkillDescriptionSetter _skillDescriptionSetter;
     [SerializeField] private SkillUseButton _skillUse;
+    [SerializeField] private SkillBook _skillBook;
 
     public void Set()
     {
@@ -19,7 +20,7 @@ public class SkillsWindowPresenter : AbstractObjectPresenter, IMonoSet
         _skillsCat.OnChange += OnSkillsCatChange;
         _searchField.OnChange += OnSearchFieldChange;
 
-        _searchController = new(this, GameManagerSingltone.Instance.Player.GetComponentInChildren<SkillBook>());
+        _searchController = new(this, _skillBook);
     }
 
     private void OnSkillsCatChange(List<SkillType> obj)

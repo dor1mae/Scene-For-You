@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class EquipmentWindow : InitClass
 {
     [SerializeField] private Inventory _inventory;
-    [SerializeField] private GameObject _containerUI;
     [SerializeField] private GameObject _itemPrefab;
     [SerializeField] private Button _useButton;
     [SerializeField] private InformationPanelController _controller;
@@ -32,7 +31,7 @@ public class EquipmentWindow : InitClass
     {
         _inventory.Init();
         _searchController = new ItemSearchController(_inventory);
-        _presentController.SetItemPresentController(_containerUI, _itemPrefab, _searchController, _controller, _useButton, _useItemButton);
+        _presentController.SetItemPresentController(_itemPrefab, _searchController, _controller, _useButton, _useItemButton);
         _animator = GetComponent<Animator>();
         
         onEndAnimation = () =>
@@ -63,8 +62,9 @@ public class EquipmentWindow : InitClass
         UIManager.SetCanPlayerMove(false);
 
         gameObject.GetComponent<CanvasGroup>().alpha = 1.0f;
+		_presentController.PresentItems();
 
-        _animator.SetBool("isOpen", true);
+		_animator.SetBool("isOpen", true);
 
         _animator.Play("Open");
 

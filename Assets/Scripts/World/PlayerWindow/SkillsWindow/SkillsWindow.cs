@@ -47,6 +47,7 @@ public class SkillsWindow : AbstractUIWindow
         UIManager.SetCanPlayerMove(false);
 
         gameObject.GetComponent<CanvasGroup>().alpha = 1.0f;
+        _skillsPresenter.PresentObjects();
 
         _animator.SetBool("IsOpen", true);
 

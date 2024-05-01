@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 
 public class Inventory : MonoBehaviour
@@ -21,7 +22,11 @@ public class Inventory : MonoBehaviour
             AddItem(new RealItem(item, 1));
         }
 
-        GameManagerSingltone.Instance.SetInventory(this);
+        EventBus.onGetInventory += () =>
+        {
+            return this;
+        };
+
         _inventoryLoader = new InventoryLoader(items);
     }
 
@@ -30,7 +35,12 @@ public class Inventory : MonoBehaviour
         return items;
     }
 
-    public void DeleteItem(RealItem item)
+	public void ReplaceItems(List<RealItem> items)
+	{
+		this.items = items;
+	}
+
+	public void DeleteItem(RealItem item)
     {
         items.Remove(item);
     }
