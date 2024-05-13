@@ -24,6 +24,7 @@ public class RewardWindow : MonoBehaviour
 		_exitButton.onClick.AddListener(() =>
 		{
 			GameManagerSingltone.Instance.ChangeStatusWorld(true);
+			GameManagerSingltone.Instance.ChangeIsBattle(false);
 			enemy.SelfDestroy();
 			SceneManager.UnloadSceneAsync(1);
 		});

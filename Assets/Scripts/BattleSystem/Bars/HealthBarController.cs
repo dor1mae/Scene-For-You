@@ -9,4 +9,9 @@ public class HealthBarController : BarController
 
         DrawFill();
     }
+
+	private void OnDestroy()
+	{
+		_unit.Durability.isChanged -= OnChanged;
+	}
 }

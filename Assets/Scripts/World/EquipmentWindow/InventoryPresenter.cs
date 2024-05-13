@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -63,9 +64,13 @@ public class InventoryPresenter : MonoBehaviour
 
     private void CleanItems()
     {
+        if(_containerUI.transform == null)
+        {
+            return;
+        }
         foreach (Transform m in _containerUI.transform)
         {
-            Destroy(m.gameObject);
-        }
+			Destroy(m.gameObject);
+		}
     }
 }

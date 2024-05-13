@@ -9,5 +9,10 @@ public class StaminaBarController : BarController
 
         DrawFill();
     }
+
+	private void OnDestroy()
+	{
+		_unit.Endurance.isChanged -= OnChanged;
+	}
 }
 

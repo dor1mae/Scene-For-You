@@ -9,4 +9,9 @@ public class ManaBarController : BarController
 
         DrawFill();
     }
+
+	private void OnDestroy()
+	{
+		_unit.Intelligence.isChanged -= OnChanged;
+	}
 }

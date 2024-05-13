@@ -40,7 +40,7 @@ public class EquipmentWindow : InitClass
         };
 
         OnSearch += _presentController.PresentItems;
-        _presentController.PresentItems();
+		_presentController.PresentItems();
         Debug.Log($"{GetType()}: is initialized");
     }
 
@@ -109,5 +109,10 @@ public class EquipmentWindow : InitClass
             StartCoroutine(OnCloseEquipmentWindow());
         }
     }
+
+	private void OnDestroy()
+	{
+		OnSearch -= _presentController.PresentItems;
+	}
 }
 
