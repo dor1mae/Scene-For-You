@@ -31,6 +31,7 @@ public class SpriteChanger : InitClass, IEquip<ItemToEquip>
 
         Equipment.onSetSprite += Equip;
         Equipment.onTakeOff += TakeOffAll;
+        EventBus.onCheck += CheckEquipment;
     }
 
     public void TakeOff(ItemToEquip item)
@@ -61,4 +62,37 @@ public class SpriteChanger : InitClass, IEquip<ItemToEquip>
     {
         return dict[item._equipmentType].sprite;
     }
+
+    public void CheckEquipment()
+    {
+        if(Equipment.Helmet != null)
+        {
+			_helmet.sprite = Equipment.Helmet.Icon;
+		}
+
+        if(Equipment.Shoes != null)
+        {
+			_shoes.sprite = Equipment.Shoes.Icon;
+		}
+
+		if (Equipment.Armor != null)
+		{
+			_armor.sprite = Equipment.Armor.Icon;
+		}
+
+		if (Equipment.Weapon != null)
+		{
+			_weapon.sprite = Equipment.Weapon.Icon;
+		}
+
+		if (Equipment.Pants != null)
+		{
+			_pants.sprite = Equipment.Pants.Icon;
+		}
+
+		if (Equipment.Gloves != null)
+		{
+			_gloves.sprite = Equipment.Gloves.Icon;
+		}
+	}
 }

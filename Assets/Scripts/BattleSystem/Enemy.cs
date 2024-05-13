@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 public class Enemy : Unit
 {
     public Enemy() : base()
@@ -7,5 +9,10 @@ public class Enemy : Unit
         {
             return this;
         };
+    }
+
+    public void SelfDestroy()
+    {
+        DestroyImmediate(gameObject);
     }
 }

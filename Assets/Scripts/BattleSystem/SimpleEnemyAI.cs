@@ -4,6 +4,7 @@
 // решения. На данный момент представляет больше затычковый характер, очень плох в бою.
 public class SimpleEnemyAI : TurnBasedEnemyAI
 {
+    [SerializeField] private EnemyCommandClient _enemyClient;
     public override void MakeDecision()
     {
         RatePlayerHP();
@@ -125,15 +126,15 @@ public class SimpleEnemyAI : TurnBasedEnemyAI
         switch (c)
         {
             case 1:
-                //_self.Attack();
+                _enemyClient.AddSimpleAttackCommand();
                 return;
 
             case 2:
-                //_self.RestoreStamina();
+                _enemyClient.AddSkipCommand();
                 return;
 
             case 3:
-                //_self.Heal(_self._durability.Value * 5);
+                _enemyClient.AddSimpleAttackCommand();
                 return;
         }
     }

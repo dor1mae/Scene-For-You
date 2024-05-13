@@ -11,16 +11,16 @@ public class Durability : StatWithBar
 
     public override void Spend(float value)
     {
-        if (_bar - value < 0)
+        if (_bar - value <= 0)
         {
             _bar = 0;
-        }
+			EventBus.Died?.Invoke(_owner);
+		}
         else
         {
             _bar -= value;
         }
 
-        EventBus.Died?.Invoke(_owner);
         isChanged?.Invoke(_bar, _maxBar);
     }
 }

@@ -10,7 +10,8 @@ public class SkillsWindowPresenter : AbstractObjectPresenter, IMonoSet
     private SkillsSearchController _searchController;
 
     [SerializeField] private SkillDescriptionSetter _skillDescriptionSetter;
-    [SerializeField] private Button _skillUse;
+    [SerializeField] private SkillUseButton _skillUse;
+    [SerializeField] private SkillBook _skillBook;
 
     public void Set()
     {
@@ -19,7 +20,7 @@ public class SkillsWindowPresenter : AbstractObjectPresenter, IMonoSet
         _skillsCat.OnChange += OnSkillsCatChange;
         _searchField.OnChange += OnSearchFieldChange;
 
-        _searchController = new(this, GameManagerSingltone.Instance.Player.GetComponentInChildren<SkillBook>());
+        _searchController = new(this, _skillBook);
     }
 
     private void OnSkillsCatChange(List<SkillType> obj)
@@ -55,16 +56,13 @@ public class SkillsWindowPresenter : AbstractObjectPresenter, IMonoSet
             button.onClick.AddListener(() =>
             {
                 _skillDescriptionSetter.SetInfo(item);
-            });
-
-            if(GameManagerSingltone.Instance.IsBattle)
-            {
-                _skillUse.onClick.RemoveAllListeners();
-                _skillUse.onClick.AddListener(() =>
+                if (GameManagerSingltone.Instance.IsBattle)
                 {
-                    item.Use();
-                });
-            }
+                    Debug.Log($"{item.SkillName}");
+
+                    _skillUse.SetSkill(item);
+                }
+            });
         }
     }
 }

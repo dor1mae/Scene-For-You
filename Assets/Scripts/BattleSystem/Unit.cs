@@ -10,6 +10,14 @@ public abstract class Unit : InitClass
     protected Endurance _endurance;
     protected Durability _durability;
 
+    public AttackController AttackController => attackController;
+    
+    protected AttackController attackController;
+    
+    protected EffectsController _effectController;
+
+    public EffectsController EffectsController => _effectController;
+
     public Power Power => _power;
     public Dexterity Dexterity => _dexterity;
     public Intelligence Intelligence => _intelligence;
@@ -38,9 +46,27 @@ public abstract class Unit : InitClass
         _endurance = new Endurance(StatEndurace, 25);
         _durability = new Durability(StatDurability, this, 25);
 
+        attackController = new AttackController(Intelligence, Dexterity, Power);
+        _effectController = new();
 
         Debug.Log($"{GetType()}: is initialized");
     }
+
+    public void Replace(Unit unit)
+    {
+        Debug.Log($"Replace {unit._name}");
+
+        _power = new Power(unit.StatPower);
+        _dexterity = new Dexterity(unit.StatDexterity, 1.5f);
+		_intelligence = new Intelligence(unit.StatIntelligence, 25);
+		_endurance = new Endurance(unit.StatEndurace, 25);
+		_durability = new Durability(unit.StatDurability, this, 25);
+
+        _name = unit.Name;
+
+		attackController = new AttackController(Intelligence, Dexterity, Power);
+		_effectController = new();
+	}
 
     public int CheckBattlePower()
     {

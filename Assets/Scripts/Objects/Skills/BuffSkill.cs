@@ -12,6 +12,8 @@ public class BuffSkill : ScriptableSkillEffect
             AttributeDictionary dict = new(owner);
 
             dict._dict[AttributeType].Upgrade(PowerSkill);
+
+            Debug.Log($"{dict._dict[AttributeType].Value} после баффа");
             
             owner._isBuffed = true;
 

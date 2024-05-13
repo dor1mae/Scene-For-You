@@ -14,9 +14,6 @@ public class Skill : IUse
     public List<SkillType> SkillTypes => _skillConfig.SkillType.ToList();
     public string SkillName => _skillConfig.SkillName;
 
-    protected bool _isFail = false;
-    public bool IsFail => _isFail;
-
     public float CostSkill => _skillConfig.CostSkill;
     public AttributeType AttributeType => _skillConfig.AttributeType;
     public string Description => _skillConfig.Description;
@@ -30,22 +27,24 @@ public class Skill : IUse
 
     public virtual void Use(Unit t = null)
     {
-        TryCast();
+        Debug.Log($"{GetType()} вызывает скилл {_skillConfig.SkillName}");
 
-        if(IsFail)
+        if(!TryCast())
         {
             return;
         }
 
         if (SkillTypes.Contains(SkillType.Positive))
         {
+            Debug.Log($"Позитивный выбор");
             _skillConfig.Use(_owner);
         }
         else
         {
-            if(_owner is Player)
+            Debug.Log($"Негативный выбор");
+            if (_owner is Player)
             {
-                _skillConfig.Use(EventBus.onGetEnemy.Invoke());
+                _skillConfig.Use(BattleSystem.OnGetEnemy.Invoke());
             }
             else
             {
@@ -54,13 +53,13 @@ public class Skill : IUse
         }
     }
 
-    protected void TryCast()
+    public bool TryCast()
     {
-        if (Owner.Intelligence.Value - _skillConfig.CostSkill < 0)
+        if (Owner.Intelligence.Bar - _skillConfig.CostSkill < 0)
         {
-            _isFail = true;
+            return false;
         }
-        else _isFail = false;
+        else return true;
     }
 }
 

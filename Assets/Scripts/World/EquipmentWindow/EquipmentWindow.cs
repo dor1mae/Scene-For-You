@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class EquipmentWindow : InitClass
 {
     [SerializeField] private Inventory _inventory;
-    [SerializeField] private GameObject _containerUI;
     [SerializeField] private GameObject _itemPrefab;
     [SerializeField] private Button _useButton;
     [SerializeField] private InformationPanelController _controller;
     [SerializeField] private InventoryPresenter _presentController;
+    [SerializeField] private ItemUseButton _useItemButton;
 
     private ItemSearchController _searchController;
 
@@ -31,7 +31,7 @@ public class EquipmentWindow : InitClass
     {
         _inventory.Init();
         _searchController = new ItemSearchController(_inventory);
-        _presentController.SetItemPresentController(_containerUI, _itemPrefab, _searchController, _controller, _useButton);
+        _presentController.SetItemPresentController(_itemPrefab, _searchController, _controller, _useButton, _useItemButton);
         _animator = GetComponent<Animator>();
         
         onEndAnimation = () =>
@@ -40,17 +40,17 @@ public class EquipmentWindow : InitClass
         };
 
         OnSearch += _presentController.PresentItems;
-        _presentController.PresentItems();
+		_presentController.PresentItems();
         Debug.Log($"{GetType()}: is initialized");
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I) && !_animator.GetBool("isOpen") && !UIManager.IsBusy() && !_isActive)
+        if(Input.GetKeyDown(KeyCode.I))
         {
             StartOpenAnimation();
         }
-        else if((Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape))&& _animator.GetBool("isOpen") && UIManager.IsBusy() && !_isActive)
+        else if((Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape)))
         {
             StartCloseAnimation();
         }
@@ -62,8 +62,9 @@ public class EquipmentWindow : InitClass
         UIManager.SetCanPlayerMove(false);
 
         gameObject.GetComponent<CanvasGroup>().alpha = 1.0f;
+		_presentController.PresentItems();
 
-        _animator.SetBool("isOpen", true);
+		_animator.SetBool("isOpen", true);
 
         _animator.Play("Open");
 
@@ -91,16 +92,27 @@ public class EquipmentWindow : InitClass
         onEndAnimation?.Invoke();
     }
 
-    private void StartOpenAnimation()
+    public void StartOpenAnimation()
     {
-        _isActive = true;
-        StartCoroutine(OnOpenEquipmentWindow());
+        if(!_animator.GetBool("isOpen") && !UIManager.IsBusy() && !_isActive)
+        {
+            _isActive = true;
+            StartCoroutine(OnOpenEquipmentWindow());
+        }
     }
 
-    private void StartCloseAnimation()
+    public void StartCloseAnimation()
     {
-        _isActive = true;
-        StartCoroutine(OnCloseEquipmentWindow());
+        if(_animator.GetBool("isOpen") && UIManager.IsBusy() && !_isActive)
+        {
+            _isActive = true;
+            StartCoroutine(OnCloseEquipmentWindow());
+        }
     }
+
+	private void OnDestroy()
+	{
+		OnSearch -= _presentController.PresentItems;
+	}
 }
 

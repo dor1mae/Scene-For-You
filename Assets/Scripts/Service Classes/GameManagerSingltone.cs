@@ -9,11 +9,13 @@ public class GameManagerSingltone : MonoBehaviour
 
     private Player _player;
 
-    private Inventory _inventory;
-    public Inventory Inventory => _inventory;
+    [SerializeField] private GameObject _worldScene;
+    public Inventory Inventory => EventBus.onGetInventory.Invoke();
 
     private bool _isBattle = false;
     public bool IsBattle => _isBattle;
+
+    public SkillBook SkillBook => EventBus.onGetSkillBook.Invoke();
 
     public static GameManagerSingltone Instance { get; private set; }
 
@@ -45,13 +47,13 @@ public class GameManagerSingltone : MonoBehaviour
         }
     }
 
-    public void SetInventory(Inventory inventory)
-    {
-        _inventory = inventory;
-    }
-
-    public void ChangeIsBattle(bool state)
+	public void ChangeIsBattle(bool state)
     {
         _isBattle = state;
+    }
+
+    public void ChangeStatusWorld(bool state)
+    {
+        _worldScene.SetActive(state);
     }
 }

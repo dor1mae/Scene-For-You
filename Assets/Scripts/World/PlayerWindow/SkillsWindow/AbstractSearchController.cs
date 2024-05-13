@@ -2,7 +2,7 @@
 {
     protected Window _window;
     protected SearchTarget _target;
-    private SkillsWindowPresenter window;
+    protected SkillsWindowPresenter window;
 
     public AbstractSearchController(Window window, SearchTarget target)
     {

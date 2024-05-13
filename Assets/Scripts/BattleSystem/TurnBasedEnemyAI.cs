@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public abstract class TurnBasedEnemyAI : MonoBehaviour
+public abstract class TurnBasedEnemyAI : InitClass
 {
     protected Enemy _self;
     protected Player _player;
 
-    //Собственные параметры для оценки
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     protected float _selfHP;
     protected float _selfMP;
     protected float _selfST;
 
-    //Вражеские параметры для оценки
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     protected float _playerHP;
 
     protected abstract void RateSelfMP();
@@ -21,10 +21,10 @@ public abstract class TurnBasedEnemyAI : MonoBehaviour
 
     protected abstract void RatePlayerHP();
 
-    public void Initialize()
+    public override void Init()
     {
-        _self = GetComponent<Enemy>();
-        _player = EventBus.onGetPlayer.Invoke();
+        _self = GetComponentInParent<Enemy>();
+        _player = GameManagerSingltone.Instance.Player;
     }
 
     public abstract void MakeDecision();

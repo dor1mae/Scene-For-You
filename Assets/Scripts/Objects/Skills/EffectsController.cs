@@ -1,18 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectsController : InitClass
+public class EffectsController
 {
-    private Unit _target;
+    //[SerializeField] private GameObject _effectsBar;
 
-    [SerializeField] private GameObject _effectsBar;
+    private List<IEffect> _effectsList = new();
 
-    private List<IEffect> _effectsList;
-
-    public override void Init()
+    public EffectsController()
     {
-        _target = GetComponent<Unit>();
-
         EventBus.TurnEnded += OnEndTurn;
     }
 

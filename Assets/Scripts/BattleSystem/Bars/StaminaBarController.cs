@@ -1,6 +1,6 @@
 public class StaminaBarController : BarController
 {
-    public override void Initialize()
+    public override void Init()
     {
         _maxFill = _unit.Endurance.MaxBar;
         _fill = _unit.Endurance.Bar;
@@ -9,5 +9,10 @@ public class StaminaBarController : BarController
 
         DrawFill();
     }
+
+	private void OnDestroy()
+	{
+		_unit.Endurance.isChanged -= OnChanged;
+	}
 }
 

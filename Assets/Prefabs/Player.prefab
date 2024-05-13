@@ -272,7 +272,6 @@ GameObject:
   - component: {fileID: 5581841706630842296}
   - component: {fileID: 4462582479721801279}
   - component: {fileID: 8615270219453617294}
-  - component: {fileID: 468052569781990556}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -315,6 +314,7 @@ MonoBehaviour:
   StatPower: 10
   StatDexterity: 10
   _name: Nima
+  _isBuffed: 0
 --- !u!50 &8615270219453617294
 Rigidbody2D:
   serializedVersion: 4
@@ -342,23 +342,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &468052569781990556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5590256167854813719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89f970e62db998643a591a1de3f5598f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _startItems:
-  - {fileID: 11400000, guid: 9a81dc4db5534e743a74fb12858874a6, type: 2}
-  - {fileID: 11400000, guid: 64401b99eb63e6e4ca9c5dc1e6671deb, type: 2}
-  - {fileID: 11400000, guid: 5fdef1b6b9ec31748be3a9e967626f6c, type: 2}
-  - {fileID: 11400000, guid: de27213e02d4d9a42a990710d7efb8bb, type: 2}
-  - {fileID: 11400000, guid: 40e207a1455b74445bc038c0f87d0390, type: 2}
-  - {fileID: 11400000, guid: 0ddc41a1e23bb5344943956efb9d200e, type: 2}
-  - {fileID: 11400000, guid: 96a859dbb44d3714992b88e40610933b, type: 2}
